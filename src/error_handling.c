@@ -1,23 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   error_handling.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nicvrlja <nicvrlja@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/29 21:03:53 by nicvrlja          #+#    #+#             */
-/*   Updated: 2025/01/30 13:43:56 by nicvrlja         ###   ########.fr       */
+/*   Created: 2025/01/30 13:32:57 by nicvrlja          #+#    #+#             */
+/*   Updated: 2025/01/30 13:36:37 by nicvrlja         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	main(int ac, char **av)
+void	print_error(char *msg)
 {
-	if (ac > 2)
-		return (print_error("Only one argument is allowed") ,1);
-	else if (ac < 2)
-		return (print_error("Argument needed: a map in format *.cub"), 1);
-	(void)av;
-	return (0);
+	write(2, "Error\n", 6);
+	while (*msg)
+	{
+		write(2, msg, 1);
+		msg++;
+	}
+	write(2, "\n", 1);
 }
