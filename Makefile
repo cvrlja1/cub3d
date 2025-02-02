@@ -17,7 +17,8 @@ CFILES_ROOT			= main.c \
 
 CFILES_ERROR		= error_handling.c \
 
-CFILES_PARSE		= parse_arguments.c \
+CFILES_PARSE		= check_file.c \
+					  parse_map.c \
 
 OBJ_FILES 			:= $(CFILES_ROOT:.c=.o) \
 					   $(CFILES_ERROR:.c=.o) \

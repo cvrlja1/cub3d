@@ -6,7 +6,7 @@
 /*   By: nightcore <nightcore@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 21:04:53 by nicvrlja          #+#    #+#             */
-/*   Updated: 2025/02/02 22:10:14 by nightcore        ###   ########.fr       */
+/*   Updated: 2025/02/02 22:51:09 by nightcore        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,8 @@
 // ############### //
 //   Definitions   //
 // ############### //
-# define LESSER_ARG_ERR "Only one argument is allowed"
-# define UPPER_ARG_ERR "Argument needed: a map in format *.cub"
-# define INVALID_MAP_ERR "Invalid map!"
-# define MAP_EXT_ERR INVALID_MAP_ERR " File extension must be of type *.cub!"
-# define MAP_PATH_ERR INVALID_MAP_ERR " Map cannot be opened!"
+
+# define MALLOC_ERR "Memory allocation error!"
 
 /* --------> Structures <-------- */
 
@@ -43,6 +40,8 @@ typedef struct s_player
 	
 }	t_player;
 
+// maybe incude textures here, ceiling and floor color
+// needs a more fitting name, can't think of any right now
 typedef struct s_map
 {
 	char	**map;
