@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nicvrlja <nicvrlja@student.42vienna.com    +#+  +:+       +#+        */
+/*   By: nightcore <nightcore@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 21:04:53 by nicvrlja          #+#    #+#             */
-/*   Updated: 2025/01/30 13:40:41 by nicvrlja         ###   ########.fr       */
+/*   Updated: 2025/02/02 21:43:29 by nightcore        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,32 +15,58 @@
 
 /* --------> Includes <-------- */
 
+# include "libft.h"
 # include <stdlib.h>
 # include <limits.h>
 # include <string.h>
 # include <unistd.h>
 # include <stdio.h>
-# include <pthread.h>
+# include <stdbool.h>
+
+// ############### //
+//   Definitions   //
+// ############### //
+# define LESSER_ARG_ERR "Only one argument is allowed"  
+# define UPPER_ARG_ERR "Argument needed: a map in format *.cub"  
+# define INVALID_MAP_ERR "Invalid map"
 
 /* --------> Structures <-------- */
 
-typedef struct s_plr
+typedef struct s_player
 {
 	float	x;
 	float	y;
+	float	rot;
 	
-} t_plr;
+}	t_player;
 
-typedef struct s_data
+typedef struct s_map
 {
-	void	*mlx;
-	void	*win;
-} t_data;
+	char	**map;
+}	t_map;
+
+typedef struct s_cub_data
+{
+	void		*mlx;
+	void		*win;
+	t_player	*player;
+	t_map		*map;
+}	t_cub_data;
 
 
 /* --------> Functions <-------- */
 
-void	print_error(char *msg);
 
+// ############### //
+//     Parsing     //
+// ############### //
+
+bool	try_parse_map(int argc, char **argv);
+
+// ############### //
+//     Errors      //
+// ############### //
+
+void	print_error(char *msg);
 
 #endif

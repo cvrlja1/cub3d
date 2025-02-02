@@ -3,21 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nicvrlja <nicvrlja@student.42vienna.com    +#+  +:+       +#+        */
+/*   By: nightcore <nightcore@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 21:03:53 by nicvrlja          #+#    #+#             */
-/*   Updated: 2025/01/30 13:43:56 by nicvrlja         ###   ########.fr       */
+/*   Updated: 2025/02/02 21:45:24 by nightcore        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	main(int ac, char **av)
+int	main(int argc, char **argv)
 {
-	if (ac > 2)
-		return (print_error("Only one argument is allowed") ,1);
-	else if (ac < 2)
-		return (print_error("Argument needed: a map in format *.cub"), 1);
-	(void)av;
+	if (!try_parse_map(argc, argv))
+		return (1);
 	return (0);
 }

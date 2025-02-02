@@ -1,37 +1,74 @@
-NAME = cub3D
-CC = cc
-CFLAGS =  -I./inc -Wall -Werror -Wextra
-LDFLAGS = -Lmlx -lmlx -lXext -lX11 -lm
-SRC_DIR = ./src
-INC_DIR = ./inc
-LIBFT_DIR	:= 	./inc/libft
-LIBFT		:= 	$(LIBFT_DIR)/libft.a
-SRC = $(SRC_DIR)/main.c \
-	  $(SRC_DIR)/error_handling.c
-OBJ = $(SRC:.c=.o)
+# -------------------------------------------------------------------
+# VARIABLES
+# -------------------------------------------------------------------
 
+# Source file directories
+SRCS_DIR			= ./srcs/
+ERROR_DIR			= ./srcs/error/
+PARSE_DIR			= ./srcs/map_parsing/
+
+# Other directories
+OBJS_DIR			= ./objs/
+LIBFT_DIR			= ./libft/
+INCLUDES_DIR		= ./includes/
+
+# Source files
+CFILES_ROOT			= main.c \
+
+CFILES_ERROR		= error_handling.c \
+
+CFILES_PARSE		= parse_arguments.c \
+
+OBJ_FILES 			:= $(CFILES_ROOT:.c=.o) \
+					   $(CFILES_ERROR:.c=.o) \
+					   $(CFILES_PARSE:.c=.o)
+
+OBJS				:= $(addprefix $(OBJS_DIR), $(OBJ_FILES))
+
+# Compilation variables
+NAME				= cub3d
+CC 					= cc
+CFLAGS 				= -Wall -Werror -Wextra -g
+RM 					= rm -rf
+LINKFLAGS			:= -L$(LIBFT_DIR) -lft -lmlx -lX11 -lXext -lm
+INCLUDES			:= -I$(INCLUDES_DIR) -I$(LIBFT_DIR)
+LIBFT				:= $(addprefix $(LIBFT_DIR), libft.a)
+
+# -------------------------------------------------------------------
+# RULES
+# -------------------------------------------------------------------
 
 all: $(NAME)
 
-$(NAME): $(OBJ) $(LIBFT)
-	$(CC) $(CFLAGS) -o $(NAME) $(OBJ) $(LDFLAGS)
-
-$(LIBFT):
-	make -C $(LIBFT_DIR)
-
-.c.o:		
-	$(CC) $(CFLAGS) -c $< -o $@
+$(NAME): $(OBJS)
+	@make all -C $(LIBFT_DIR)
+	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(LINKFLAGS)
 
 clean:
-	rm -f $(OBJ)
-	make -C $(LIBFT_DIR) clean
+	@make clean -C $(LIBFT_DIR)
+	$(RM) objs
 
 fclean: clean
-	rm -f $(NAME)
-	make -C $(LIBFT_DIR) fclean
+	$(RM) $(LIBFT)
+	$(RM) $(NAME)
 
 re: fclean all
 
-my: all myclean
-
 .PHONY: all clean fclean re
+
+# -------------------------------------------------------------------
+# OBJECT RULES
+# -------------------------------------------------------------------
+# // These have to be implemented for each directory in the project
+
+$(OBJS_DIR)%.o: $(SRCS_DIR)%.c
+	@mkdir -p $(OBJS_DIR)
+	$(CC) $(CFLAGS) -c $< $(INCLUDES) -o $@
+
+$(OBJS_DIR)%.o: $(ERROR_DIR)%.c
+	@mkdir -p $(OBJS_DIR)
+	$(CC) $(CFLAGS) -c $< $(INCLUDES) -o $@
+
+$(OBJS_DIR)%.o: $(PARSE_DIR)%.c
+	@mkdir -p $(OBJS_DIR)
+	$(CC) $(CFLAGS) -c $< $(INCLUDES) -o $@
