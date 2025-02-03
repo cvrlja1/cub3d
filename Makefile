@@ -20,6 +20,10 @@ CFILES_ROOT			= main.c \
 CFILES_ERROR		= error_handling.c
 
 CFILES_PARSE		= check_file.c \
+					  init_textures.c \
+					  get_identifiers.c \
+					  parse_texture.c \
+					  parse_color.c \
 					  parse_map.c \
 					  fill_map.c \
 					  get_map_infos.c

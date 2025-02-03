@@ -6,7 +6,7 @@
 /*   By: nightcore <nightcore@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 21:03:53 by nicvrlja          #+#    #+#             */
-/*   Updated: 2025/02/03 13:41:09 by nightcore        ###   ########.fr       */
+/*   Updated: 2025/02/03 13:55:19 by nightcore        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,18 @@ static void	debug_print_map(t_map *map)
 	write(1, "\n", 1);
 }
 
+static void	debug_textures(t_textures *textures)
+{
+	if (textures == NULL)
+		return ;
+	printf(" Ceiling color: %X\n", textures->ceil_clr);
+	printf(" Floor color:   %X\n", textures->flr_clr);
+	printf(" NO path:       %s\n", textures->no_path);
+	printf(" EA path:       %s\n", textures->ea_path);
+	printf(" SO path:       %s\n", textures->so_path);
+	printf(" WE path:       %s\n", textures->we_path);
+}
+
 int	main(int argc, char **argv)
 {
 	t_cub_data	data;
@@ -43,6 +55,7 @@ int	main(int argc, char **argv)
 	if (!try_parse_map(argc, argv, &data))
 		return (1);
 	debug_print_map(data.map);
+	debug_textures(data.textures);
 	close_cub(&data);
 	return (0);
 }

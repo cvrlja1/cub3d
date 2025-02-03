@@ -1,0 +1,73 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parse_color.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nightcore <nightcore@student.42.fr>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/02/03 15:34:54 by nightcore         #+#    #+#             */
+/*   Updated: 2025/02/03 19:11:17 by nightcore        ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "parsing.h"
+
+static int	get_rgb_nbr(int fd, char *buf, int *bytes_read, bool is_b_value)
+{
+	char	nbr[4];
+	int		j;
+	int		rgb_nbr;
+
+	j = 0;
+	ft_memset((void *) nbr, 0, 4 * sizeof(char));
+	while (j < 3)
+	{
+		if (j != 0 && *buf == ',')
+			break ;
+		if (j != 0 && is_b_value && is_whitespace(*buf))
+			break ;
+		if (!ft_isdigit(*buf))
+			return (print_error(CLR_RANGE_ERR), -1);
+		nbr[j] = *buf;
+		*bytes_read += read(fd, buf, 1);
+		j++;
+	}
+	rgb_nbr = ft_atoi(nbr);
+	if (rgb_nbr > 255 || rgb_nbr < 0)
+		return (print_error(CLR_RANGE_ERR), -1);
+	return (rgb_nbr);
+}
+
+static bool	try_between_read(int fd, char *buf, int *bytes_read)
+{
+	while (is_whitespace(*buf))
+		*bytes_read += read(fd, buf, 1);
+	if (*buf != ',')
+		return (print_error(CLR_COMMA_ERR), false);
+	*bytes_read += read(fd, buf, 1);
+	while (is_whitespace(*buf))
+		*bytes_read += read(fd, buf, 1);
+	return (true);
+}
+
+bool	try_parse_color(t_id_info *info, int fd, char *buf, int *bytes_read)
+{
+	int	i;
+	int	rgb_value;
+
+	i = 0;
+	*(int *) info->ptr_ref = 0;
+	while (i < 3)
+	{
+		rgb_value = get_rgb_nbr(fd, buf, bytes_read, i == 2);
+		if (rgb_value < 0)
+			return (false);
+		*(int *) info->ptr_ref |= rgb_value << ((2 - i) * 8);
+		if (i == 2)
+			return (true);
+		if (!try_between_read(fd, buf, bytes_read))
+			return (false);
+		i++;
+	}
+	return (true);
+}
