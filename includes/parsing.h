@@ -6,7 +6,7 @@
 /*   By: nightcore <nightcore@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/02 22:24:57 by nightcore         #+#    #+#             */
-/*   Updated: 2025/02/03 19:12:44 by nightcore        ###   ########.fr       */
+/*   Updated: 2025/02/03 19:51:01 by nightcore        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ Use 'N', 'E', 'S' or 'W'!"
 //    Const Defs   //
 // ############### //
 
-# define ACCEPTED_CHARS "01 \t\nNESW"
+# define ACCEPTED_MAP_CHARS "01 \t\nNESW"
 # define NO_IDENTIFIER "NO"
 # define EA_IDENTIFIER "EA"
 # define SO_IDENTIFIER "SO"

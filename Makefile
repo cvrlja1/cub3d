@@ -66,6 +66,10 @@ fclean: clean
 
 re: fclean all
 
+r:
+	$(RM) objs
+	make $(NAME)
+
 .PHONY: all clean fclean re
 
 # -------------------------------------------------------------------

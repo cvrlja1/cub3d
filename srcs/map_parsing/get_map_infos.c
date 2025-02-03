@@ -6,7 +6,7 @@
 /*   By: nightcore <nightcore@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/02 23:01:25 by nightcore         #+#    #+#             */
-/*   Updated: 2025/02/03 03:16:41 by nightcore        ###   ########.fr       */
+/*   Updated: 2025/02/03 19:51:01 by nightcore        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static bool	is_accepted_char(char c, t_map_info *mi)
 {
 	char	*tmp;
 
-	tmp = ACCEPTED_CHARS;
+	tmp = ACCEPTED_MAP_CHARS;
 	while (*tmp != '\0')
 	{
 		if (c == *tmp)
