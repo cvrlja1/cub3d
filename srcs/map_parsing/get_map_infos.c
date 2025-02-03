@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_size.c                                         :+:      :+:    :+:   */
+/*   get_map_infos.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nightcore <nightcore@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/02 23:01:25 by nightcore         #+#    #+#             */
-/*   Updated: 2025/02/03 02:12:52 by nightcore        ###   ########.fr       */
+/*   Updated: 2025/02/03 03:16:41 by nightcore        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,18 @@ static bool	is_accepted_char(char c, t_map_info *mi)
 
 static void	skip_pre_map_whitespace(int fd, char *buf, int *bytes_read)
 {
+	int		nl_offset;
+
+	nl_offset = 0;
 	read(fd, buf, 1);
 	while (is_whitespace(buf[0]))
 	{
-		(*bytes_read)++;
+		nl_offset++;
+		if (buf[0] == '\n')
+		{
+			(*bytes_read) += nl_offset;
+			nl_offset = 0;
+		}
 		read(fd, buf, 1);
 	}
 }
