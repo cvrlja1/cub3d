@@ -6,7 +6,7 @@
 /*   By: nightcore <nightcore@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/02 22:24:57 by nightcore         #+#    #+#             */
-/*   Updated: 2025/02/03 18:06:47 by nightcore        ###   ########.fr       */
+/*   Updated: 2025/02/03 19:12:44 by nightcore        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,10 +78,6 @@ typedef struct s_map_info
 }	t_map_info;
 
 /* --------> Functions <-------- */
-
-// DEBUGGGGGGGGGG
-char		*debug_get_id_str(t_identifier id);
-
 
 bool		try_get_textures(t_cub_data *data, int fd, int *bytes_read);
 t_id_info	find_id_info(t_textures *t, char *buf, int fd, int *bytes_read);

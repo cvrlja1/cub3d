@@ -6,7 +6,7 @@
 /*   By: nightcore <nightcore@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 15:02:37 by nightcore         #+#    #+#             */
-/*   Updated: 2025/02/03 18:58:56 by nightcore        ###   ########.fr       */
+/*   Updated: 2025/02/03 19:12:10 by nightcore        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ bool	is_valid_id_info(t_id_info *info)
 	return (true);
 }
 
-static bool try_get_id_pointer_ref(t_textures *t, t_id_info *info)
+static bool	try_get_id_pointer_ref(t_textures *t, t_id_info *info)
 {
 	if (info->id == NO)
 		info->ptr_ref = (void *) &t->no_path;
@@ -66,7 +66,8 @@ static t_id_info	get_identifier_infos(t_textures *t, char *key)
 	else if (strcmp(key, F_IDENTIFIER) == 0)
 		id_info.id = F;
 	else
-		return (print_error(INVALID_ID_ERR), (t_id_info){.id = NO_ID, .ptr_ref = NULL});
+		return (print_error(INVALID_ID_ERR), \
+			(t_id_info){.id = NO_ID, .ptr_ref = NULL});
 	if (!try_get_id_pointer_ref(t, &id_info))
 		return ((t_id_info){.id = NO_ID, .ptr_ref = NULL});
 	return (id_info);

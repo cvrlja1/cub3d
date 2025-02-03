@@ -6,13 +6,13 @@
 /*   By: nightcore <nightcore@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 15:34:54 by nightcore         #+#    #+#             */
-/*   Updated: 2025/02/03 18:42:15 by nightcore        ###   ########.fr       */
+/*   Updated: 2025/02/03 19:11:17 by nightcore        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
 
-static int get_rgb_nbr(int fd, char *buf, int *bytes_read, bool is_b_value)
+static int	get_rgb_nbr(int fd, char *buf, int *bytes_read, bool is_b_value)
 {
 	char	nbr[4];
 	int		j;
@@ -37,7 +37,6 @@ static int get_rgb_nbr(int fd, char *buf, int *bytes_read, bool is_b_value)
 		return (print_error(CLR_RANGE_ERR), -1);
 	return (rgb_nbr);
 }
-
 
 static bool	try_between_read(int fd, char *buf, int *bytes_read)
 {

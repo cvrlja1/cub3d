@@ -6,7 +6,7 @@
 /*   By: nightcore <nightcore@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 14:36:59 by nightcore         #+#    #+#             */
-/*   Updated: 2025/02/03 19:06:46 by nightcore        ###   ########.fr       */
+/*   Updated: 2025/02/03 19:10:50 by nightcore        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,20 +78,6 @@ static bool	try_read(t_textures *t, int fd, int *bytes_read)
 	return (true);
 }
 
-bool	try_initialize_texture_struct(t_textures *t)
-{
-	// t->no_path = (char *) ft_calloc(1, sizeof(char));
-	// t->ea_path = (char *) ft_calloc(1, sizeof(char));
-	// t->so_path = (char *) ft_calloc(1, sizeof(char));
-	// t->we_path = (char *) ft_calloc(1, sizeof(char));
-	// if (t->no_path == NULL || t->ea_path == NULL 
-	// 	|| t->so_path == NULL || t->we_path == NULL)
-	// 	return (print_error(MALLOC_ERR), false);
-	t->ceil_clr = -1;
-	t->flr_clr = -1;
-	return (true);
-}
-
 bool	try_get_textures(t_cub_data *data, int fd, int *bytes_read)
 {
 	data->textures = (t_textures *) ft_calloc(1, sizeof(t_textures));
@@ -99,8 +85,6 @@ bool	try_get_textures(t_cub_data *data, int fd, int *bytes_read)
 		return (false);
 	data->textures->ceil_clr = -1;
 	data->textures->flr_clr = -1;
-	//if (!try_initialize_texture_struct(data->textures))
-	//	return (false);
 	if (!try_read(data->textures, fd, bytes_read))
 		return (false);
 	return (true);

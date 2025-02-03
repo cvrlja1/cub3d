@@ -6,7 +6,7 @@
 /*   By: nightcore <nightcore@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 15:34:58 by nightcore         #+#    #+#             */
-/*   Updated: 2025/02/03 19:03:01 by nightcore        ###   ########.fr       */
+/*   Updated: 2025/02/03 19:11:34 by nightcore        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,17 +17,15 @@ bool	try_parse_texture(t_id_info *info, int fd, char *buf, int *bytes_read)
 	ssize_t	read_res;
 	char	**ref;
 	char	*tmp;
-	
+
 	ref = (char **) info->ptr_ref;
 	while (!is_whitespace(*buf))
 	{
-
 		tmp = ft_strjoin(*ref, buf);
 		if (tmp == NULL)
 			return (print_error(MALLOC_ERR), false);
 		free(*ref);
 		*ref = tmp;
-		tmp = NULL;
 		read_res = read(fd, buf, 1);
 		if (read_res == -1)
 			return (print_error(READ_FD_ERR), false);
