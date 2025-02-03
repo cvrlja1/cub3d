@@ -6,7 +6,7 @@
 /*   By: nightcore <nightcore@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 21:04:53 by nicvrlja          #+#    #+#             */
-/*   Updated: 2025/02/03 02:49:08 by nightcore        ###   ########.fr       */
+/*   Updated: 2025/02/03 13:41:21 by nightcore        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,19 +43,30 @@ typedef struct s_player
 
 // maybe incude textures here, ceiling and floor color
 // needs a more fitting name, can't think of any right now
-typedef struct s_init_data
+typedef struct s_map
 {
-	char	**map;
-	int		map_xlen;
-	int		map_ylen;
-}	t_init_data;
+	char	**arr;
+	int		x_len;
+	int		y_len;
+}	t_map;
+
+typedef struct s_textures
+{
+	int		ceil_clr;
+	int		flr_clr;
+	char	*no_path;
+	char	*ea_path;
+	char	*so_path;
+	char	*we_path;
+}	t_textures;
 
 typedef struct s_cub_data
 {
 	void		*mlx;
 	void		*win;
 	t_player	*player;
-	t_init_data	*init;
+	t_map		*map;
+	t_textures	*textures;
 }	t_cub_data;
 
 /* --------> Functions <-------- */
