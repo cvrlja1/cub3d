@@ -6,7 +6,7 @@
 /*   By: nightcore <nightcore@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 01:53:41 by nightcore         #+#    #+#             */
-/*   Updated: 2025/02/03 03:41:16 by nightcore        ###   ########.fr       */
+/*   Updated: 2025/02/03 03:56:03 by nightcore        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,6 @@ bool	try_fill_map_arr(t_cub_data *data, char **map, int fd)
 		}
 		handle_special_map_char(data, &buf[0]);
 		place_char_on_map(&map[i][j++], buf[0]);
-		//map[i][j++] = buf[0];
 	}
 	return (true);
 }
