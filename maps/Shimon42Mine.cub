@@ -8,8 +8,8 @@ NO assets/textures/walls/stone_bricks/3.xpm
 WE assets/textures/walls/stone_bricks/4.xpm
 
 
-C assets/sky/mountains/mountains.xpm
-F assets/textures/floor/sand.xpm
+C 255    , 255, 255  
+F 0, 255    ,0      
 
 
                          111111111

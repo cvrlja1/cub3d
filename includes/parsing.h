@@ -6,7 +6,7 @@
 /*   By: nightcore <nightcore@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/02 22:24:57 by nightcore         #+#    #+#             */
-/*   Updated: 2025/02/03 16:56:14 by nightcore        ###   ########.fr       */
+/*   Updated: 2025/02/03 18:06:47 by nightcore        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,9 @@
 # define INVALID_ID_ERR "Invalid type identifier encountered!"
 # define UPPER_ID_ERR "Only one identifier of a certain type allowed!"
 # define LOWER_ID_ERR "Not all type identiiers are specified!"
+# define LOWER_ID_ERR "Not all type identiiers are specified!"
+# define CLR_RANGE_ERR "Colors must be a number and in range between [0,255]!"
+# define CLR_COMMA_ERR "There must be a comma ',' between the RGB values!"
 # define MAP_EXT_ERR "Invalid map! File extension must be of type *.cub!"
 # define MAP_PATH_ERR "Invalid map! Map cannot be opened!"
 # define MAP_NL_ERR "Invalid map! There is an empty line in the map!"
@@ -77,7 +80,8 @@ typedef struct s_map_info
 /* --------> Functions <-------- */
 
 // DEBUGGGGGGGGGG
-char	*debug_get_id_str(t_identifier id);
+char		*debug_get_id_str(t_identifier id);
+
 
 bool		try_get_textures(t_cub_data *data, int fd, int *bytes_read);
 t_id_info	find_id_info(t_textures *t, char *buf, int fd, int *bytes_read);
@@ -86,5 +90,7 @@ bool		is_player_spawn(char c);
 char		**get_map_arr(t_cub_data *data, char *path, int fd, int bytes_read);
 t_map_info	get_map_infos(int fd, int *fd_read_count);
 bool		try_fill_map_arr(t_cub_data *data, char **map, int fd);
+bool		try_parse_color(t_id_info *inf, int fd, char *buf, int *byts_read);
+bool		try_parse_texture(t_id_info *inf, int fd, char *buf, int *byt_read);
 
 #endif

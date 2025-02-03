@@ -6,7 +6,7 @@
 /*   By: nightcore <nightcore@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 14:36:59 by nightcore         #+#    #+#             */
-/*   Updated: 2025/02/03 17:14:03 by nightcore        ###   ########.fr       */
+/*   Updated: 2025/02/03 18:50:59 by nightcore        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,38 +29,19 @@ static bool	has_found_all_identifiers(t_textures *t)
 	return (true);
 }
 
-char	*debug_get_id_str(t_identifier id)
+static bool	try_parse_info(t_id_info *inf, int fd, char *buf, int *bytes_read)
 {
-	if (id == EA)
-		return ("EA");
-	if (id == WE)
-		return ("WE");
-	if (id == SO)
-		return ("SO");
-	if (id == NO)
-		return ("NO");
-	if (id == C)
-		return ("C");
-	if (id == F)
-		return ("F");
-	return ("NO_ID");
-}
-
-static void	debug_print_id(int fd, char *buf, int *bytes_read, t_id_info *id_info)
-{
-	int	read_res;
-
-	printf("Found type identifier \'%s\':\n", debug_get_id_str(id_info->id));
-	write(1, "\t", 1);
-	while (*buf != '\n')
+	if (inf->id == C || inf->id == F)
 	{
-		write(1, buf, 1);
-		read_res = read(fd, buf, 1);
-		*bytes_read += read_res;
+		if (!try_parse_color(inf, fd, buf, bytes_read))
+			return (false);
 	}
-	write(1, "\n", 1);
-	if (id_info->id == C || id_info->id == F)
-		*(int *)id_info->ptr_ref = 0x11FF00;
+	else
+	{
+		if (!try_parse_texture(inf, fd, buf, bytes_read))
+			return (false);
+	}
+	return (true);
 }
 
 static bool	try_read(t_textures *t, int fd, int *bytes_read)
@@ -82,21 +63,21 @@ static bool	try_read(t_textures *t, int fd, int *bytes_read)
 				return (print_error(PARSE_NL_ERR), false);
 			*bytes_read += read(fd, buf, 1);
 		}
-		debug_print_id(fd, buf, bytes_read, &id_info);
+		if (!try_parse_info(&id_info, fd, buf, bytes_read))
+			return (false);
 	}
 	return (true);
 }
 
 bool	try_initialize_texture_struct(t_textures *t)
 {
-	t->no_path = (char *) ft_calloc(2, sizeof(char));
-	t->ea_path = (char *) ft_calloc(2, sizeof(char));
-	t->so_path = (char *) ft_calloc(2, sizeof(char));
-	t->we_path = (char *) ft_calloc(2, sizeof(char));
+	t->no_path = (char *) ft_calloc(1, sizeof(char));
+	t->ea_path = (char *) ft_calloc(1, sizeof(char));
+	t->so_path = (char *) ft_calloc(1, sizeof(char));
+	t->we_path = (char *) ft_calloc(1, sizeof(char));
 	if (t->no_path == NULL || t->ea_path == NULL \
 		|| t->so_path == NULL || t->we_path == NULL)
 		return (print_error(MALLOC_ERR), false);
-	t->ceil_clr = -1;
 	t->ceil_clr = -1;
 	t->flr_clr = -1;
 	return (true);
