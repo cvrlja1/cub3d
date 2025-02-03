@@ -7,6 +7,8 @@ SRCS_DIR			= ./srcs/
 ERROR_DIR			= ./srcs/error/
 PARSE_DIR			= ./srcs/map_parsing/
 UTILS_DIR			= ./srcs/utils/
+RAYCASTING_DIR		= ./srcs/raycasting/
+MLX_DIR				= ./srcs/mlx/
 
 # Other directories
 OBJS_DIR			= ./objs/
@@ -28,11 +30,19 @@ CFILES_PARSE		= check_file.c \
 					  fill_map.c \
 					  get_map_infos.c
 
+CFILES_RAYCAST		= render.c \
+
+CFILES_MLX			= setup.c \
+					  image.c \
+					  hooks.c
+
 CFILES_UTILS		= is_whitespace.c
 
 OBJ_FILES 			:= $(CFILES_ROOT:.c=.o) \
 					   $(CFILES_ERROR:.c=.o) \
 					   $(CFILES_UTILS:.c=.o) \
+					   $(CFILES_RAYCAST:.c=.o) \
+					   $(CFILES_MLX:.c=.o) \
 					   $(CFILES_PARSE:.c=.o)
 
 OBJS				:= $(addprefix $(OBJS_DIR), $(OBJ_FILES))
@@ -70,7 +80,7 @@ r:
 	$(RM) objs
 	make $(NAME)
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re r
 
 # -------------------------------------------------------------------
 # OBJECT RULES
@@ -90,5 +100,13 @@ $(OBJS_DIR)%.o: $(PARSE_DIR)%.c
 	$(CC) $(CFLAGS) -c $< $(INCLUDES) -o $@
 
 $(OBJS_DIR)%.o: $(UTILS_DIR)%.c
+	@mkdir -p $(OBJS_DIR)
+	$(CC) $(CFLAGS) -c $< $(INCLUDES) -o $@
+
+$(OBJS_DIR)%.o: $(RAYCASTING_DIR)%.c
+	@mkdir -p $(OBJS_DIR)
+	$(CC) $(CFLAGS) -c $< $(INCLUDES) -o $@
+
+$(OBJS_DIR)%.o: $(MLX_DIR)%.c
 	@mkdir -p $(OBJS_DIR)
 	$(CC) $(CFLAGS) -c $< $(INCLUDES) -o $@

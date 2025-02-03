@@ -6,7 +6,7 @@
 /*   By: nightcore <nightcore@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/02 21:26:30 by nightcore         #+#    #+#             */
-/*   Updated: 2025/02/03 16:47:13 by nightcore        ###   ########.fr       */
+/*   Updated: 2025/02/03 21:33:41 by nightcore        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,16 +35,19 @@ static bool	try_setup_init_data(t_cub_data *data, char *file_path, int fd)
 	data->map = (t_map *) ft_calloc(1, sizeof(t_map));
 	if (data->map == NULL)
 		return (print_error(MALLOC_ERR), close(fd), false);
+	data->player = (t_player *) ft_calloc(1, sizeof(t_player));
+	if (data->player == NULL)
+		return (print_error(MALLOC_ERR), free(data->map), close(fd), false);
 	bytes_read = 0;
 	if (!try_get_textures(data, fd, &bytes_read))
-		return (close_cub(data), close(fd), false);
+		return (free_cub(data), close(fd), false);
 	data->map->arr = get_map_arr(data, file_path, fd, bytes_read);
 	if (data->map->arr == NULL)
-		return (close_cub(data), false);
+		return (free_cub(data), false);
 	return (true);
 }
 
-bool	try_parse_map(int argc, char **argv, t_cub_data *data)
+bool	try_initialization(int argc, char **argv, t_cub_data *data)
 {
 	int	fd;
 
