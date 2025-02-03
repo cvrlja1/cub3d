@@ -6,7 +6,7 @@
 /*   By: nightcore <nightcore@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 15:02:37 by nightcore         #+#    #+#             */
-/*   Updated: 2025/02/03 18:49:21 by nightcore        ###   ########.fr       */
+/*   Updated: 2025/02/03 18:58:56 by nightcore        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,7 @@ bool	is_valid_id_info(t_id_info *info)
 static bool try_get_id_pointer_ref(t_textures *t, t_id_info *info)
 {
 	if (info->id == NO)
-	{
-	printf("no_path: \'%p\'\n", t->no_path);
-	printf("is the no_path NULL? %s\n", t->no_path == NULL ? "true" : "false");
 		info->ptr_ref = (void *) &t->no_path;
-	}
 	else if (info->id == EA)
 		info->ptr_ref = (void *) &t->ea_path;
 	else if (info->id == SO)
@@ -45,12 +41,11 @@ static bool try_get_id_pointer_ref(t_textures *t, t_id_info *info)
 			return (print_error(UPPER_ID_ERR), false);
 		return (true);
 	}
-	printf("ptr_ref: \'%p\'\n", *(char **) info->ptr_ref);
-	printf("ptr_ref: \'%p\'\n", info->ptr_ref);
-	printf("ptr_ref: \'%p\'\n", (char **) info->ptr_ref);
-	printf("is the ptr_ref NULL? %s\n", *((char **) info->ptr_ref) == NULL ? "true" : "false");
 	if (*((char **) info->ptr_ref) != NULL)
 		return (print_error(UPPER_ID_ERR), false);
+	*(char **) info->ptr_ref = (char *) ft_calloc(1, sizeof(char));
+	if (*(char **) info->ptr_ref == NULL)
+		return (print_error(MALLOC_ERR), false);
 	return (true);
 }
 
