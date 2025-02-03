@@ -34,7 +34,7 @@ OBJ_FILES 			:= $(CFILES_ROOT:.c=.o) \
 OBJS				:= $(addprefix $(OBJS_DIR), $(OBJ_FILES))
 
 # Compilation variables
-NAME				= cub3d
+NAME				= cub3D
 CC 					= cc
 CFLAGS 				= -Wall -Werror -Wextra -g
 RM 					= rm -rf

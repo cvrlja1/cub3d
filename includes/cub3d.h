@@ -6,7 +6,7 @@
 /*   By: nightcore <nightcore@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 21:04:53 by nicvrlja          #+#    #+#             */
-/*   Updated: 2025/02/03 02:19:13 by nightcore        ###   ########.fr       */
+/*   Updated: 2025/02/03 02:49:08 by nightcore        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,8 @@ typedef struct s_player
 typedef struct s_init_data
 {
 	char	**map;
+	int		map_xlen;
+	int		map_ylen;
 }	t_init_data;
 
 typedef struct s_cub_data
