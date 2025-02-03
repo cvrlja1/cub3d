@@ -6,7 +6,7 @@
 /*   By: nightcore <nightcore@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/02 22:15:15 by nightcore         #+#    #+#             */
-/*   Updated: 2025/02/03 03:43:12 by nightcore        ###   ########.fr       */
+/*   Updated: 2025/02/03 13:41:09 by nightcore        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,8 +67,8 @@ char	**get_map_arr(t_cub_data *data, char *file_path, int fd, int bytes_read)
 	if (!try_fill_map_arr(data, mi.map, fd))
 		return (free_map_arr(mi.map), close(fd), NULL);
 	close(fd);
-	data->init->map_xlen = mi.x;
-	data->init->map_ylen = mi.y;
+	data->map->x_len = mi.x;
+	data->map->y_len = mi.y;
 	// check map here. flood fill
 	return (mi.map);
 }

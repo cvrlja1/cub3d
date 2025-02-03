@@ -6,7 +6,7 @@
 /*   By: nightcore <nightcore@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 00:00:10 by nightcore         #+#    #+#             */
-/*   Updated: 2025/02/03 01:28:39 by nightcore        ###   ########.fr       */
+/*   Updated: 2025/02/03 13:41:09 by nightcore        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,12 @@ void	free_map_arr(char **map)
 	map = NULL;
 }
 
-static void	free_init_data(t_init_data *map)
+static void	free_init_data(t_map *map)
 {
 	if (map == NULL)
 		return ;
-	if (map->map != NULL)
-		free_map_arr(map->map);
+	if (map->arr != NULL)
+		free_map_arr(map->arr);
 	free(map);
 }
 
@@ -39,6 +39,6 @@ void	close_cub(t_cub_data *data)
 {
 	if (data == NULL)
 		return ;
-	if (data->init != NULL)
-		free_init_data(data->init);
+	if (data->map != NULL)
+		free_init_data(data->map);
 }

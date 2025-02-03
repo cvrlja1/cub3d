@@ -6,7 +6,7 @@
 /*   By: nightcore <nightcore@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/02 21:26:30 by nightcore         #+#    #+#             */
-/*   Updated: 2025/02/03 02:14:43 by nightcore        ###   ########.fr       */
+/*   Updated: 2025/02/03 13:41:09 by nightcore        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@ static bool	try_setup_init_data(t_cub_data *data, char *file_path, int fd)
 {
 	int	bytes_read;
 
-	data->init = (t_init_data *) ft_calloc(1, sizeof(t_init_data));
-	if (data->init == NULL)
+	data->map = (t_map *) ft_calloc(1, sizeof(t_map));
+	if (data->map == NULL)
 		return (print_error(MALLOC_ERR), close(fd), false);
 	bytes_read = 0;
 	/*
@@ -42,9 +42,9 @@ static bool	try_setup_init_data(t_cub_data *data, char *file_path, int fd)
 	 *
 	 * Parse other arguments (COLOR, TEXTURES) before array
 	 */
-	data->init->map = get_map_arr(data, file_path, fd, bytes_read);
-	if (data->init->map == NULL)
-		return (free(data->init), false); // free things from before if it fails
+	data->map->arr = get_map_arr(data, file_path, fd, bytes_read);
+	if (data->map->arr == NULL)
+		return (free(data->map), false); // free things from before if it fails
 	return (true);
 }
 
