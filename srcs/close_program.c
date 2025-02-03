@@ -1,24 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error_handling.c                                   :+:      :+:    :+:   */
+/*   close_program.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nightcore <nightcore@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/30 13:32:57 by nicvrlja          #+#    #+#             */
-/*   Updated: 2025/02/02 23:55:41 by nightcore        ###   ########.fr       */
+/*   Created: 2025/02/03 00:00:10 by nightcore         #+#    #+#             */
+/*   Updated: 2025/02/03 01:28:39 by nightcore        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	print_error(char *msg)
+void	free_map_arr(char **map)
 {
-	write(2, "Error\n", 6);
-	while (*msg)
+	int	i;
+
+	i = 0;
+	while (map[i] != NULL)
 	{
-		write(2, msg, 1);
-		msg++;
+		free(map[i]);
+		map[i++] = NULL;
 	}
-	write(2, "\n", 1);
+	free(map);
+	map = NULL;
+}
+
+static void	free_init_data(t_init_data *map)
+{
+	if (map == NULL)
+		return ;
+	if (map->map != NULL)
+		free_map_arr(map->map);
+	free(map);
+}
+
+void	close_cub(t_cub_data *data)
+{
+	if (data == NULL)
+		return ;
+	if (data->init != NULL)
+		free_init_data(data->init);
 }

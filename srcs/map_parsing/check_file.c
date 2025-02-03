@@ -6,7 +6,7 @@
 /*   By: nightcore <nightcore@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/02 21:26:30 by nightcore         #+#    #+#             */
-/*   Updated: 2025/02/02 22:54:00 by nightcore        ###   ########.fr       */
+/*   Updated: 2025/02/03 02:14:43 by nightcore        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 bool	is_valid_input(int argc, char **argv)
 {
 	size_t	len;
+
 	if (argc > 2)
 		return (print_error(LESSER_ARG_ERR), false);
 	else if (argc < 2)
@@ -27,6 +28,26 @@ bool	is_valid_input(int argc, char **argv)
 	return (true);
 }
 
+static bool	try_setup_init_data(t_cub_data *data, char *file_path, int fd)
+{
+	int	bytes_read;
+
+	data->init = (t_init_data *) ft_calloc(1, sizeof(t_init_data));
+	if (data->init == NULL)
+		return (print_error(MALLOC_ERR), close(fd), false);
+	bytes_read = 0;
+	/*
+	 * pass this into all the functions first reading from the file descriptor 
+	 * to count where the parsing for the map array starts. 
+	 *
+	 * Parse other arguments (COLOR, TEXTURES) before array
+	 */
+	data->init->map = get_map_arr(data, file_path, fd, bytes_read);
+	if (data->init->map == NULL)
+		return (free(data->init), false); // free things from before if it fails
+	return (true);
+}
+
 bool	try_parse_map(int argc, char **argv, t_cub_data *data)
 {
 	int	fd;
@@ -36,15 +57,7 @@ bool	try_parse_map(int argc, char **argv, t_cub_data *data)
 	fd = open(argv[1], O_RDONLY);
 	if (fd < 0)
 		return (print_error(MAP_PATH_ERR), false);
-
-	// Parse other arguments (COLOR, TEXTURES) before array
-
-	data->map = (t_map *) ft_calloc(1, sizeof(t_map));
-	if (data->map == NULL)
-		return (print_error(MALLOC_ERR), close(fd), false);
-	data->map->map = get_map_arr(fd);
-	if (data->map == NULL)
-		return (free(data->map), close(fd), false); // free things from before
-	close(fd);
+	if (!try_setup_init_data(data, argv[1], fd))
+		return (false);
 	return (true);
 }

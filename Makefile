@@ -6,6 +6,7 @@
 SRCS_DIR			= ./srcs/
 ERROR_DIR			= ./srcs/error/
 PARSE_DIR			= ./srcs/map_parsing/
+UTILS_DIR			= ./srcs/utils/
 
 # Other directories
 OBJS_DIR			= ./objs/
@@ -14,14 +15,20 @@ INCLUDES_DIR		= ./includes/
 
 # Source files
 CFILES_ROOT			= main.c \
+					  close_program.c
 
-CFILES_ERROR		= error_handling.c \
+CFILES_ERROR		= error_handling.c
 
 CFILES_PARSE		= check_file.c \
 					  parse_map.c \
+					  fill_map.c \
+					  get_map_infos.c
+
+CFILES_UTILS		= is_whitespace.c
 
 OBJ_FILES 			:= $(CFILES_ROOT:.c=.o) \
 					   $(CFILES_ERROR:.c=.o) \
+					   $(CFILES_UTILS:.c=.o) \
 					   $(CFILES_PARSE:.c=.o)
 
 OBJS				:= $(addprefix $(OBJS_DIR), $(OBJ_FILES))
@@ -71,5 +78,9 @@ $(OBJS_DIR)%.o: $(ERROR_DIR)%.c
 	$(CC) $(CFLAGS) -c $< $(INCLUDES) -o $@
 
 $(OBJS_DIR)%.o: $(PARSE_DIR)%.c
+	@mkdir -p $(OBJS_DIR)
+	$(CC) $(CFLAGS) -c $< $(INCLUDES) -o $@
+
+$(OBJS_DIR)%.o: $(UTILS_DIR)%.c
 	@mkdir -p $(OBJS_DIR)
 	$(CC) $(CFLAGS) -c $< $(INCLUDES) -o $@

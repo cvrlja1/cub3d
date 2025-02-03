@@ -1,24 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error_handling.c                                   :+:      :+:    :+:   */
+/*   is_whitespace.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nightcore <nightcore@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/30 13:32:57 by nicvrlja          #+#    #+#             */
-/*   Updated: 2025/02/02 23:55:41 by nightcore        ###   ########.fr       */
+/*   Created: 2025/02/02 23:17:05 by nightcore         #+#    #+#             */
+/*   Updated: 2025/02/03 00:37:07 by nightcore        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	print_error(char *msg)
+bool	is_whitespace(char c)
 {
-	write(2, "Error\n", 6);
-	while (*msg)
-	{
-		write(2, msg, 1);
-		msg++;
-	}
-	write(2, "\n", 1);
+	return (c == ' ' || c == '\t' || c == '\n');
 }

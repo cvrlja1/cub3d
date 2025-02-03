@@ -6,7 +6,7 @@
 /*   By: nightcore <nightcore@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 21:04:53 by nicvrlja          #+#    #+#             */
-/*   Updated: 2025/02/02 22:51:09 by nightcore        ###   ########.fr       */
+/*   Updated: 2025/02/03 02:19:13 by nightcore        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@
 // ############### //
 
 # define MALLOC_ERR "Memory allocation error!"
+# define OPEN_FD_ERR "Failed to open a file descriptor!"
+# define READ_FD_ERR "Failed to read from a file descriptor!"
 
 /* --------> Structures <-------- */
 
@@ -37,27 +39,24 @@ typedef struct s_player
 	float	x;
 	float	y;
 	float	rot;
-	
 }	t_player;
 
 // maybe incude textures here, ceiling and floor color
 // needs a more fitting name, can't think of any right now
-typedef struct s_map
+typedef struct s_init_data
 {
 	char	**map;
-}	t_map;
+}	t_init_data;
 
 typedef struct s_cub_data
 {
 	void		*mlx;
 	void		*win;
 	t_player	*player;
-	t_map		*map;
+	t_init_data	*init;
 }	t_cub_data;
 
-
 /* --------> Functions <-------- */
-
 
 // ############### //
 //     Parsing     //
@@ -70,5 +69,18 @@ bool	try_parse_map(int argc, char **argv, t_cub_data *data);
 // ############### //
 
 void	print_error(char *msg);
+
+// ############### //
+//      Utils      //
+// ############### //
+
+bool	is_whitespace(char c);
+
+// ############### //
+//  Close & Free   //
+// ############### //
+
+void	close_cub(t_cub_data *data);
+void	free_map_arr(char **map);
 
 #endif
