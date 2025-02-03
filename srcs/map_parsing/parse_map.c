@@ -6,7 +6,7 @@
 /*   By: nightcore <nightcore@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/02 22:15:15 by nightcore         #+#    #+#             */
-/*   Updated: 2025/02/03 13:41:09 by nightcore        ###   ########.fr       */
+/*   Updated: 2025/02/03 16:06:59 by nightcore        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,15 @@ static char	**create_map_arr(t_map_info mi)
 		i++;
 	}
 	return (map);
+}
+
+static bool	has_valid_map_info(t_map_info mi)
+{
+	if (mi.x < 1 || mi.y < 1)
+		return (false);
+	if (mi.spawn_count == 0)
+		return (print_error(LESSER_SPWN_ERR), false);
+	return (true);
 }
 
 static bool	try_reopen_fd(char *path, int *fd, int bytes_read)
@@ -55,10 +64,8 @@ char	**get_map_arr(t_cub_data *data, char *file_path, int fd, int bytes_read)
 
 	mi = get_map_infos(fd, &bytes_read);
 	close(fd);
-	if (mi.x < 1 || mi.y < 1)
+	if (!has_valid_map_info(mi))
 		return (NULL);
-	if (mi.spawn_count == 0)
-		return (print_error(LESSER_SPWN_ERR), NULL);
 	mi.map = create_map_arr(mi);
 	if (mi.map == NULL)
 		return (mi.map);

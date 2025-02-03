@@ -6,7 +6,7 @@
 /*   By: nightcore <nightcore@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 00:00:10 by nightcore         #+#    #+#             */
-/*   Updated: 2025/02/03 13:41:09 by nightcore        ###   ########.fr       */
+/*   Updated: 2025/02/03 16:43:42 by nightcore        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	free_map_arr(char **map)
 	map = NULL;
 }
 
-static void	free_init_data(t_map *map)
+static void	free_map(t_map *map)
 {
 	if (map == NULL)
 		return ;
@@ -35,10 +35,26 @@ static void	free_init_data(t_map *map)
 	free(map);
 }
 
+void	free_textures(t_textures *textures)
+{
+	if (textures == NULL)
+		return ;
+	if (textures->no_path != NULL)
+		free(textures->no_path);
+	if (textures->ea_path != NULL)
+		free(textures->ea_path);
+	if (textures->so_path != NULL)
+		free(textures->so_path);
+	if (textures->we_path != NULL)
+		free(textures->we_path);
+	free(textures);
+	textures = NULL;
+}
+
 void	close_cub(t_cub_data *data)
 {
 	if (data == NULL)
 		return ;
-	if (data->map != NULL)
-		free_init_data(data->map);
+	free_map(data->map);
+	free_textures(data->textures);
 }

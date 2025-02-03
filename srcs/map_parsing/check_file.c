@@ -6,13 +6,13 @@
 /*   By: nightcore <nightcore@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/02 21:26:30 by nightcore         #+#    #+#             */
-/*   Updated: 2025/02/03 13:41:09 by nightcore        ###   ########.fr       */
+/*   Updated: 2025/02/03 16:47:13 by nightcore        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
 
-bool	is_valid_input(int argc, char **argv)
+static bool	is_valid_input(int argc, char **argv)
 {
 	size_t	len;
 
@@ -36,15 +36,11 @@ static bool	try_setup_init_data(t_cub_data *data, char *file_path, int fd)
 	if (data->map == NULL)
 		return (print_error(MALLOC_ERR), close(fd), false);
 	bytes_read = 0;
-	/*
-	 * pass this into all the functions first reading from the file descriptor 
-	 * to count where the parsing for the map array starts. 
-	 *
-	 * Parse other arguments (COLOR, TEXTURES) before array
-	 */
+	if (!try_get_textures(data, fd, &bytes_read))
+		return (close_cub(data), close(fd), false);
 	data->map->arr = get_map_arr(data, file_path, fd, bytes_read);
 	if (data->map->arr == NULL)
-		return (free(data->map), false); // free things from before if it fails
+		return (close_cub(data), false);
 	return (true);
 }
 
