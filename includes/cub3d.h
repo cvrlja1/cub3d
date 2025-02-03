@@ -6,7 +6,7 @@
 /*   By: nightcore <nightcore@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 21:04:53 by nicvrlja          #+#    #+#             */
-/*   Updated: 2025/02/03 21:50:29 by nightcore        ###   ########.fr       */
+/*   Updated: 2025/02/03 23:12:14 by nightcore        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 # include <limits.h>
 # include <string.h>
 # include <fcntl.h>
+# include <math.h>
 # include <mlx.h>
 
 // ############### //
@@ -88,22 +89,12 @@ typedef struct s_cub_data
 /* --------> Functions <-------- */
 
 // ############### //
-//   Raycasting    //
-// ############### //
-
-void	render(t_cub_data *data);
-
-// ############### //
-//     Parsing     //
+//       Misc      //
 // ############### //
 
 bool	try_initialization(int argc, char **argv, t_cub_data *data);
-
-// ############### //
-//     Errors      //
-// ############### //
-
-void	print_error(char *msg);
+void	hande_player_input(int keycode, t_cub_data *data);
+void	raycast_image(t_cub_data *data);
 
 // ############### //
 //       Mlx       //
@@ -113,11 +104,13 @@ bool	try_mlx_setup(t_cub_data *data);
 t_image	*create_image(void *mlx_ptr);
 void	put_pixel_on_img(t_image *img, int x, int y, int color);
 int		key_hook(int keycode, t_cub_data *data);
+int		render(void *arg);
 
 // ############### //
 //      Utils      //
 // ############### //
 
+void	print_error(char *msg);
 bool	is_whitespace(char c);
 
 // ############### //

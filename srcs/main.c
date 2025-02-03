@@ -6,7 +6,7 @@
 /*   By: nightcore <nightcore@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 21:03:53 by nicvrlja          #+#    #+#             */
-/*   Updated: 2025/02/03 21:51:13 by nightcore        ###   ########.fr       */
+/*   Updated: 2025/02/03 22:08:22 by nightcore        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,6 @@ int	main(int argc, char **argv)
 	debug_textures(data.textures);
 	if (!try_mlx_setup(&data))
 		close_cub(&data, 1);
-	render(&data);
 	mlx_loop(data.mlx);
 	return (0);
 }
