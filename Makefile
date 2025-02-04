@@ -32,6 +32,8 @@ CFILES_PARSE		= check_file.c \
 					  get_map_infos.c
 
 CFILES_RAYCAST		= render.c \
+					  dda.c \
+					  draw_to_image.c \
 
 CFILES_MLX			= setup.c \
 					  image.c \
@@ -39,7 +41,8 @@ CFILES_MLX			= setup.c \
 
 CFILES_INPUT		= handle_player_input.c
 
-CFILES_UTILS		= is_whitespace.c
+CFILES_UTILS		= is_whitespace.c \
+					  vector2_math.c
 
 OBJ_FILES 			:= $(CFILES_ROOT:.c=.o) \
 					   $(CFILES_ERROR:.c=.o) \
