@@ -6,7 +6,7 @@
 /*   By: nightcore <nightcore@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 01:53:41 by nightcore         #+#    #+#             */
-/*   Updated: 2025/02/03 23:07:42 by nightcore        ###   ########.fr       */
+/*   Updated: 2025/02/04 17:18:15 by nightcore        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@ static void	handle_special_map_char(t_cub_data *data, char *c, int x, int y)
 {
 	if (*c == 'N' || *c == 'E' || *c == 'S' || *c == 'W')
 	{
-		*data->player = (t_player){.x = x + 0.5, .y = y + 0.5, .rot = 0};
+		*data->player = (t_player){.x = x, .y = y, .rot = 0};
+		//*data->player = (t_player){.x = x + 0.5, .y = y + 0.5, .rot = 0};
 		if (*c == 'N')
 			data->player->rot = 270 * M_PI / 180;
 		else if (*c == 'E')

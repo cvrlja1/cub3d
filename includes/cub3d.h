@@ -6,7 +6,7 @@
 /*   By: nightcore <nightcore@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 21:04:53 by nicvrlja          #+#    #+#             */
-/*   Updated: 2025/02/04 05:19:49 by nightcore        ###   ########.fr       */
+/*   Updated: 2025/02/04 15:51:47 by nightcore        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,8 @@
 
 typedef struct s_player
 {
-	double	x;
-	double	y;
+	float	x;
+	float	y;
 	double	rot;
 }	t_player;
 

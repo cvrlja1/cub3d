@@ -6,7 +6,7 @@
 /*   By: nightcore <nightcore@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 20:25:04 by nightcore         #+#    #+#             */
-/*   Updated: 2025/02/04 05:05:13 by nightcore        ###   ########.fr       */
+/*   Updated: 2025/02/04 15:56:31 by nightcore        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@
 
 typedef struct s_vector2
 {
-	double	x;
-	double	y;
+	float	x;
+	float	y;
 }	t_vector2;
 
 typedef enum e_side
@@ -62,6 +62,8 @@ typedef struct s_player_info
 void	draw_vertical_line(t_ray *ray, t_image *img, int x_pos);
 void	fill_image_background(t_cub_data *data);
 void	dda(t_ray *ray, t_player_info *inf, char **map);
+
 void	rotate_vector2(t_vector2 *vect, double rad);
+void	normalize_vector2(t_vector2 *vect);
 
 #endif
