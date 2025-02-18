@@ -6,7 +6,7 @@
 /*   By: tluegham <tluegham@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 21:12:37 by nightcore         #+#    #+#             */
-/*   Updated: 2025/02/18 18:16:53 by tluegham         ###   ########.fr       */
+/*   Updated: 2025/02/18 18:27:44 by tluegham         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,8 @@
 
 static void	setup_hooks(t_cub_data *data)
 {
-	//mlx_key_hook(data->win, on_key_pressed, data);
-	mlx_hook(data->win, 2, 1L<<0, on_key_pressed, data);
-	//mlx_key_hook(data->win, on_key_released, data);
-	mlx_hook(data->win, 3, 1L<<1, on_key_released, data);
+	mlx_hook(data->win, 2, 1L << 0, on_key_pressed, data);
+	mlx_hook(data->win, 3, 1L << 1, on_key_released, data);
 	mlx_hook(data->win, 17, 0, (int (*)(void *))close_cub_mlx, data);
 	mlx_loop_hook(data->mlx, update, data);
 }
