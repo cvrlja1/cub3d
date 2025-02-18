@@ -6,7 +6,7 @@
 /*   By: tluegham <tluegham@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 00:00:10 by nightcore         #+#    #+#             */
-/*   Updated: 2025/02/18 16:12:43 by tluegham         ###   ########.fr       */
+/*   Updated: 2025/02/18 18:17:13 by tluegham         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ void	free_cub(t_cub_data *data)
 
 void	close_cub(t_cub_data *data, int exit_code)
 {
+	mlx_do_key_autorepeaton(data->mlx);
 	free_cub(data);
 	exit(exit_code);
 }

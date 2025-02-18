@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   handle_player_input.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nightcore <nightcore@student.42.fr>        +#+  +:+       +#+        */
+/*   By: tluegham <tluegham@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 23:09:55 by nightcore         #+#    #+#             */
-/*   Updated: 2025/02/04 17:13:09 by nightcore        ###   ########.fr       */
+/*   Updated: 2025/02/18 16:54:37 by tluegham         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
-#include <X11/keysym.h>
+#include "input.h"
 
 void	rotate_player(int keycode, t_player *player)
 {

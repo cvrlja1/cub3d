@@ -6,7 +6,7 @@
 /*   By: tluegham <tluegham@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 20:25:04 by nightcore         #+#    #+#             */
-/*   Updated: 2025/02/18 16:21:40 by tluegham         ###   ########.fr       */
+/*   Updated: 2025/02/18 17:19:22 by tluegham         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ typedef struct s_ray
 {
 	t_vector2	*start;
 	float		rot;
+	float		relative_rot;
 	t_vector2	*dir;
 	t_vector2	*step_size;
 	t_vector2	*length;

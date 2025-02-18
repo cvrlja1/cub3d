@@ -6,7 +6,7 @@
 /*   By: tluegham <tluegham@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 21:04:53 by nicvrlja          #+#    #+#             */
-/*   Updated: 2025/02/18 14:19:42 by tluegham         ###   ########.fr       */
+/*   Updated: 2025/02/18 17:02:29 by tluegham         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,16 +40,16 @@
 # define FOV_HALF 33
 # define FOV_RAD_HALF 0.5759586532
 
+# define WINDOW_WIDTH 1600
+# define WINDOW_HEIGHT 900
+# define PROGRAM_NAME "Genki Cub3D"
+
 # define MALLOC_ERR "Memory allocation error!"
 # define OPEN_FD_ERR "Failed to open a file descriptor!"
 # define READ_FD_ERR "Failed to read from a file descriptor!"
 # define MLX_INIT_ERR "Failed to initialize mlx!"
 # define MLX_WIN_ERR "Failed to create mlx window!"
 # define MLX_IMG_ERR "Failed to create mlx image!"
-
-# define WINDOW_WIDTH 1600
-# define WINDOW_HEIGHT 900
-# define PROGRAM_NAME "Genki Cub3D"
 
 /* --------> Structures <-------- */
 
@@ -104,7 +104,6 @@ typedef struct s_cub_data
 // ############### //
 
 bool	try_initialization(int argc, char **argv, t_cub_data *data);
-void	hande_player_input(int keycode, t_cub_data *data);
 void	raycast_image(t_cub_data *data);
 
 // ############### //
@@ -114,8 +113,9 @@ void	raycast_image(t_cub_data *data);
 bool	try_mlx_setup(t_cub_data *data);
 t_image	*create_image(void *mlx_ptr);
 void	put_pixel_on_img(t_image *img, int x, int y, int color);
-int		key_hook(int keycode, t_cub_data *data);
-int		render(void *arg);
+int		on_key_pressed(int keycode, void *data);
+int		on_key_released(int keycode, void *data);
+int		update(void *arg);
 
 // ############### //
 //      Utils      //
