@@ -6,7 +6,7 @@
 /*   By: tluegham <tluegham@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 04:47:27 by nightcore         #+#    #+#             */
-/*   Updated: 2025/02/18 16:08:56 by tluegham         ###   ########.fr       */
+/*   Updated: 2025/02/18 17:20:29 by tluegham         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ static int	get_line_height(t_ray *ray)
 		distance = ray->length->x - ray->step_size->x;
 	else
 		distance = ray->length->y - ray->step_size->y;
+	distance = distance * cos(ray->relative_rot);
 	height = (int) WINDOW_HEIGHT / distance;
 	return (height);
 }
@@ -33,7 +34,7 @@ void	draw_vertical_line(t_ray *ray, t_image *img, int x_pos)
 	int	color;
 
 	line_height = get_line_height(ray);
-	start = -line_height / 2 + WINDOW_HEIGHT / 2;
+	start = -line_height / 2 + WINDOW_HEIGHT / 2 - 1;
 	if (start < 0)
 		start = 0;
 	end = line_height / 2 + WINDOW_HEIGHT / 2;

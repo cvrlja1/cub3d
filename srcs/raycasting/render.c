@@ -6,7 +6,7 @@
 /*   By: tluegham <tluegham@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 21:47:29 by nightcore         #+#    #+#             */
-/*   Updated: 2025/02/18 16:10:43 by tluegham         ###   ########.fr       */
+/*   Updated: 2025/02/18 17:21:27 by tluegham         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,9 @@ static void	setup_ray(t_ray *ray, t_cub_data *data, int x)
 {
 	float	tmp;
 
-	ray->rot = data->player->rot + (2 * x / (float) WINDOW_WIDTH - 1) * \
-				FOV_RAD_HALF * data->player->fov_mult;
+	ray->relative_rot = (2 * x / (float) WINDOW_WIDTH - 1) * \
+							FOV_RAD_HALF * data->player->fov_mult;
+	ray->rot = data->player->rot + ray->relative_rot;
 	ray->dir->x = cos(ray->rot);
 	ray->dir->y = sin(ray->rot);
 	ray->map_x = (int)ray->start->x;
