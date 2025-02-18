@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tluegham <tluegham@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nicvrlja <nicvrlja@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 21:04:53 by nicvrlja          #+#    #+#             */
-/*   Updated: 2025/02/18 14:19:42 by tluegham         ###   ########.fr       */
+/*   Updated: 2025/02/18 18:47:49 by nicvrlja         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,13 @@ typedef struct s_textures
 	char	*we_path;
 }	t_textures;
 
+typedef struct s_xpm
+{
+	void	*img;
+	int		width;
+	int		height;
+} t_xpm;
+
 typedef struct s_image
 {
 	void	*mlx_img;
@@ -113,6 +120,7 @@ void	raycast_image(t_cub_data *data);
 
 bool	try_mlx_setup(t_cub_data *data);
 t_image	*create_image(void *mlx_ptr);
+t_xpm	*load_xpm(char *filename, t_cub_data *data);
 void	put_pixel_on_img(t_image *img, int x, int y, int color);
 int		key_hook(int keycode, t_cub_data *data);
 int		render(void *arg);

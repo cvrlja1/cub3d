@@ -38,6 +38,7 @@ CFILES_RAYCAST		= render.c \
 
 CFILES_MLX			= setup.c \
 					  image.c \
+					  load_xpm.c \
 					  hooks.c
 
 CFILES_INPUT		= handle_player_input.c
