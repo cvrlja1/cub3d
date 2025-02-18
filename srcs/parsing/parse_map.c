@@ -6,7 +6,7 @@
 /*   By: nicvrlja <nicvrlja@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/02 22:15:15 by nightcore         #+#    #+#             */
-/*   Updated: 2025/02/18 15:00:57 by nicvrlja         ###   ########.fr       */
+/*   Updated: 2025/02/18 16:50:00 by nicvrlja         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,6 @@ char	**get_map_arr(t_cub_data *data, char *file_path, int fd, int bytes_read)
 	data->map->x_len = mi.x;
 	data->map->y_len = mi.y;
 	if (!check_map(mi.map, mi.y, mi.x))
-		return (printf("Error, map is invalid!"), NULL); 
+		return (free_map_arr(mi.map), print_error(FLOOD_FAIL), NULL); 
 	return (mi.map);
 }

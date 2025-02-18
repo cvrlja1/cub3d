@@ -6,7 +6,7 @@
 /*   By: nicvrlja <nicvrlja@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/02 22:24:57 by nightcore         #+#    #+#             */
-/*   Updated: 2025/02/18 14:45:25 by nicvrlja         ###   ########.fr       */
+/*   Updated: 2025/02/18 16:49:32 by nicvrlja         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@
 # define UPPER_SPWN_ERR "Invalid map! Only one player spawn point allowed!"
 # define LESSER_SPWN_ERR "Invalid map! There is no player spawn point. \
 Use 'N', 'E', 'S' or 'W'!"
+# define FLOOD_FAIL "Invalid map! The map must be fully enclosed by walls."
 
 // ############### //
 //    Const Defs   //

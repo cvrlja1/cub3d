@@ -6,7 +6,7 @@
 /*   By: nicvrlja <nicvrlja@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 13:48:37 by nicvrlja          #+#    #+#             */
-/*   Updated: 2025/02/18 15:42:46 by nicvrlja         ###   ########.fr       */
+/*   Updated: 2025/02/18 16:50:27 by nicvrlja         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static bool	flood(char **arr, int wid, int hei, int x, int y)
 {
 	static bool	check = true;
 	if (is_on_boundary(arr, wid, hei, x, y) || arr[y][x] == '\0')
-		return (false);
+		check = false;
 	if (!is_valid(arr, wid, hei, x, y))
 		return (false);
 	if (!check)
@@ -44,7 +44,7 @@ static bool	flood(char **arr, int wid, int hei, int x, int y)
 	flood(arr, wid, hei, x, y - 1);
 	return (true);
 }
-bool	loop_map(char **arr, int wid, int hei)
+static bool	loop_map(char **arr, int wid, int hei)
 {
 	int	x;
 	int	y;
@@ -58,31 +58,6 @@ bool	loop_map(char **arr, int wid, int hei)
 				return (false);
 	}
 	return (true);
-}
-
-static void	debug_print_map(char **arr, int wid, int hei)
-{
-	char	c;
-	int		i;
-	int		j;
-
-	i = 0;
-	(void)hei;
-	printf("Showing map:\n\n");
-	while (arr[i] != NULL)
-	{
-		j = 0;
-		while (j < wid)
-		{
-			c = arr[i][j++];
-			if (c == '\0')
-				c = ' ';
-			write(1, &c, 1);
-		}
-		write(1, "\n", 1);
-		i++;
-	}
-	write(1, "\n", 1);
 }
 
 bool	check_map(char **arr, int wid, int hei)
@@ -105,7 +80,6 @@ bool	check_map(char **arr, int wid, int hei)
 	}
 	if (loop_map(arr, wid, hei))
 		return (true);
-	debug_print_map(arr, wid, hei);
 	return (false);
 }
 
