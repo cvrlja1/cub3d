@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nightcore <nightcore@student.42.fr>        +#+  +:+       +#+        */
+/*   By: tluegham <tluegham@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 21:04:53 by nicvrlja          #+#    #+#             */
-/*   Updated: 2025/02/04 15:51:47 by nightcore        ###   ########.fr       */
+/*   Updated: 2025/02/18 14:19:42 by tluegham         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,16 @@
 //   Definitions   //
 // ############### //
 
+// Fix for M_PI so vscode doesn't cry
+# ifndef M_PI
+#  define M_PI 3.14159265358979323846
+# endif
+
+# define FOV 66
+# define FOV_RAD 1.1519173063
+# define FOV_HALF 33
+# define FOV_RAD_HALF 0.5759586532
+
 # define MALLOC_ERR "Memory allocation error!"
 # define OPEN_FD_ERR "Failed to open a file descriptor!"
 # define READ_FD_ERR "Failed to read from a file descriptor!"
@@ -37,8 +47,8 @@
 # define MLX_WIN_ERR "Failed to create mlx window!"
 # define MLX_IMG_ERR "Failed to create mlx image!"
 
-# define WINDOW_WIDTH 1080
-# define WINDOW_HEIGHT 720
+# define WINDOW_WIDTH 1600
+# define WINDOW_HEIGHT 900
 # define PROGRAM_NAME "Genki Cub3D"
 
 /* --------> Structures <-------- */
@@ -48,6 +58,7 @@ typedef struct s_player
 	float	x;
 	float	y;
 	double	rot;
+	double	fov_mult;
 }	t_player;
 
 typedef struct s_map

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   setup.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nicvrlja <nicvrlja@student.42vienna.com    +#+  +:+       +#+        */
+/*   By: tluegham <tluegham@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 21:12:37 by nightcore         #+#    #+#             */
-/*   Updated: 2025/02/10 16:39:03 by nicvrlja         ###   ########.fr       */
+/*   Updated: 2025/02/18 16:22:27 by tluegham         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static void	setup_hooks(t_cub_data *data)
 {
 	mlx_key_hook(data->win, key_hook, data);
-	mlx_hook(data->win, 17, 0, (int (*)(struct s_cub_data *))close_cub_mlx, data);
+	mlx_hook(data->win, 17, 0, (int (*)(void *))close_cub_mlx, data);
 	mlx_loop_hook(data->mlx, render, data);
 }
 
