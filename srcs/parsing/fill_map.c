@@ -6,7 +6,7 @@
 /*   By: tluegham <tluegham@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 01:53:41 by nightcore         #+#    #+#             */
-/*   Updated: 2025/02/18 16:22:09 by tluegham         ###   ########.fr       */
+/*   Updated: 2025/02/18 16:27:09 by tluegham         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,15 +33,15 @@ static void	place_char_on_map(char **map, int x, int y, char c)
 {
 	static char	last_char = '\0';
 
-	if (is_whitespace(c))
+	if (c == '0')
+		c = WALK_CHAR;
+	else if (is_whitespace(c))
 	{
 		if (last_char == '1' || last_char == '\0')
 			c = '\0';
 		else
 			c = WALK_CHAR;
 	}
-	else if (c == '0')
-		c = WALK_CHAR;
 	map[x][y] = c;
 	last_char = c;
 }
