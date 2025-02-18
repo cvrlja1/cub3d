@@ -29,6 +29,7 @@ CFILES_PARSE		= check_file.c \
 					  parse_color.c \
 					  parse_map.c \
 					  fill_map.c \
+					  flood_fill.c \
 					  get_map_infos.c
 
 CFILES_RAYCAST		= render.c \

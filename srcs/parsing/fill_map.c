@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fill_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nightcore <nightcore@student.42.fr>        +#+  +:+       +#+        */
+/*   By: nicvrlja <nicvrlja@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 01:53:41 by nightcore         #+#    #+#             */
-/*   Updated: 2025/02/04 17:18:15 by nightcore        ###   ########.fr       */
+/*   Updated: 2025/02/18 14:46:54 by nicvrlja         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static void	handle_special_map_char(t_cub_data *data, char *c, int x, int y)
 			data->player->rot = 90 * M_PI / 180;
 		else if (*c == 'W')
 			data->player->rot = 180 * M_PI / 180;
-		*c = '0';
+		*c = WALK_CHAR;
 	}
 }
 
@@ -39,8 +39,10 @@ static void	place_char_on_map(char **map, int x, int y, char c)
 		if (last_char == '1' || last_char == '\0')
 			c = '\0';
 		else
-			c = '0';
+			c = WALK_CHAR;
 	}
+	else if (c == '0')
+		c = WALK_CHAR;
 	map[x][y] = c;
 	last_char = c;
 }
