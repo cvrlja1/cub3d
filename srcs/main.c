@@ -6,7 +6,7 @@
 /*   By: nightcore <nightcore@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 21:03:53 by nicvrlja          #+#    #+#             */
-/*   Updated: 2025/02/03 13:55:19 by nightcore        ###   ########.fr       */
+/*   Updated: 2025/02/03 22:08:22 by nightcore        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,10 +52,13 @@ int	main(int argc, char **argv)
 {
 	t_cub_data	data;
 
-	if (!try_parse_map(argc, argv, &data))
+	ft_memset(&data, 0, sizeof(t_cub_data));
+	if (!try_initialization(argc, argv, &data))
 		return (1);
 	debug_print_map(data.map);
 	debug_textures(data.textures);
-	close_cub(&data);
+	if (!try_mlx_setup(&data))
+		close_cub(&data, 1);
+	mlx_loop(data.mlx);
 	return (0);
 }

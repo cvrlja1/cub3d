@@ -6,7 +6,7 @@
 /*   By: nightcore <nightcore@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 00:00:10 by nightcore         #+#    #+#             */
-/*   Updated: 2025/02/03 16:43:42 by nightcore        ###   ########.fr       */
+/*   Updated: 2025/02/03 21:27:06 by nightcore        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,10 +51,29 @@ void	free_textures(t_textures *textures)
 	textures = NULL;
 }
 
-void	close_cub(t_cub_data *data)
+void	free_cub(t_cub_data *data)
 {
 	if (data == NULL)
-		return ;
+		return ;	
+	if (data->mlx != NULL && data->img != NULL)
+		mlx_destroy_image(data->mlx, data->img->mlx_img);
+	if (data->mlx != NULL && data->win != NULL)
+		mlx_destroy_window(data->mlx, data->win);
+	if (data->mlx != NULL)
+	{
+		mlx_destroy_display(data->mlx);
+		free(data->mlx);
+	}
+	if (data->img != NULL)
+		free(data->img);
 	free_map(data->map);
 	free_textures(data->textures);
+	if (data->player != NULL)
+		free(data->player);
+}
+
+void	close_cub(t_cub_data *data, int exit_code)
+{
+	free_cub(data);
+	exit(exit_code);
 }

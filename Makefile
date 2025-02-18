@@ -5,8 +5,11 @@
 # Source file directories
 SRCS_DIR			= ./srcs/
 ERROR_DIR			= ./srcs/error/
-PARSE_DIR			= ./srcs/map_parsing/
+PARSE_DIR			= ./srcs/parsing/
 UTILS_DIR			= ./srcs/utils/
+RAYCASTING_DIR		= ./srcs/raycasting/
+MLX_DIR				= ./srcs/mlx/
+INPUT_DIR			= ./srcs/input/
 
 # Other directories
 OBJS_DIR			= ./objs/
@@ -26,13 +29,28 @@ CFILES_PARSE		= check_file.c \
 					  parse_color.c \
 					  parse_map.c \
 					  fill_map.c \
+					  flood_fill.c \
 					  get_map_infos.c
 
-CFILES_UTILS		= is_whitespace.c
+CFILES_RAYCAST		= render.c \
+					  dda.c \
+					  draw_to_image.c \
+
+CFILES_MLX			= setup.c \
+					  image.c \
+					  hooks.c
+
+CFILES_INPUT		= handle_player_input.c
+
+CFILES_UTILS		= is_whitespace.c \
+					  vector2_math.c
 
 OBJ_FILES 			:= $(CFILES_ROOT:.c=.o) \
 					   $(CFILES_ERROR:.c=.o) \
 					   $(CFILES_UTILS:.c=.o) \
+					   $(CFILES_RAYCAST:.c=.o) \
+					   $(CFILES_MLX:.c=.o) \
+					   $(CFILES_INPUT:.c=.o) \
 					   $(CFILES_PARSE:.c=.o)
 
 OBJS				:= $(addprefix $(OBJS_DIR), $(OBJ_FILES))
@@ -70,7 +88,7 @@ r:
 	$(RM) objs
 	make $(NAME)
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re r
 
 # -------------------------------------------------------------------
 # OBJECT RULES
@@ -90,5 +108,17 @@ $(OBJS_DIR)%.o: $(PARSE_DIR)%.c
 	$(CC) $(CFLAGS) -c $< $(INCLUDES) -o $@
 
 $(OBJS_DIR)%.o: $(UTILS_DIR)%.c
+	@mkdir -p $(OBJS_DIR)
+	$(CC) $(CFLAGS) -c $< $(INCLUDES) -o $@
+
+$(OBJS_DIR)%.o: $(RAYCASTING_DIR)%.c
+	@mkdir -p $(OBJS_DIR)
+	$(CC) $(CFLAGS) -c $< $(INCLUDES) -o $@
+
+$(OBJS_DIR)%.o: $(MLX_DIR)%.c
+	@mkdir -p $(OBJS_DIR)
+	$(CC) $(CFLAGS) -c $< $(INCLUDES) -o $@
+
+$(OBJS_DIR)%.o: $(INPUT_DIR)%.c
 	@mkdir -p $(OBJS_DIR)
 	$(CC) $(CFLAGS) -c $< $(INCLUDES) -o $@

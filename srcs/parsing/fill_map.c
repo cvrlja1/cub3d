@@ -3,46 +3,48 @@
 /*                                                        :::      ::::::::   */
 /*   fill_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nightcore <nightcore@student.42.fr>        +#+  +:+       +#+        */
+/*   By: nicvrlja <nicvrlja@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 01:53:41 by nightcore         #+#    #+#             */
-/*   Updated: 2025/02/03 03:56:03 by nightcore        ###   ########.fr       */
+/*   Updated: 2025/02/18 14:46:54 by nicvrlja         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
 
-static void	place_char_on_map(char *map_pos, char c)
-{
-	static char	last_char = '\0';
-
-	if (c == '\n')
-	{
-		last_char = '0';
-	}
-	if (is_whitespace(c))
-	{
-		if (last_char == '1' || last_char == '\0')
-		{
-			c = '\0';
-		}
-		else
-			c = '0';
-	}
-	*map_pos = c;
-	last_char = c;
-}
-
-/*
- * SET PLAYER STARTING POSITION AND ROTATION HERE
- */
-static void	handle_special_map_char(t_cub_data *data, char *c)
+static void	handle_special_map_char(t_cub_data *data, char *c, int x, int y)
 {
 	if (*c == 'N' || *c == 'E' || *c == 'S' || *c == 'W')
 	{
-		(void) data;
-		*c = '0';
+		*data->player = (t_player){.x = x, .y = y, .rot = 0};
+		//*data->player = (t_player){.x = x + 0.5, .y = y + 0.5, .rot = 0};
+		if (*c == 'N')
+			data->player->rot = 270 * M_PI / 180;
+		else if (*c == 'E')
+			data->player->rot = 0;
+		else if (*c == 'S')
+			data->player->rot = 90 * M_PI / 180;
+		else if (*c == 'W')
+			data->player->rot = 180 * M_PI / 180;
+		*c = WALK_CHAR;
 	}
+}
+
+static void	place_char_on_map(char **map, int x, int y, char c)
+{
+	static char	last_char = '\0';
+
+	if (is_whitespace(c))
+	{
+		if (last_char == '1' || last_char == '\0')
+			c = '\0';
+		else
+			c = WALK_CHAR;
+	}
+	else if (c == '0')
+		c = WALK_CHAR;
+	map[x][y] = c;
+	last_char = c;
 }
 
 bool	try_fill_map_arr(t_cub_data *data, char **map, int fd)
@@ -67,8 +69,8 @@ bool	try_fill_map_arr(t_cub_data *data, char **map, int fd)
 			i++;
 			continue ;
 		}
-		handle_special_map_char(data, &buf[0]);
-		place_char_on_map(&map[i][j++], buf[0]);
+		handle_special_map_char(data, &buf[0], i, j);
+		place_char_on_map(map, i, j++, buf[0]);
 	}
 	return (true);
 }

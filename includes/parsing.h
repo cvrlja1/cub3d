@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nightcore <nightcore@student.42.fr>        +#+  +:+       +#+        */
+/*   By: nicvrlja <nicvrlja@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/02 22:24:57 by nightcore         #+#    #+#             */
-/*   Updated: 2025/02/03 19:51:01 by nightcore        ###   ########.fr       */
+/*   Updated: 2025/02/18 14:45:25 by nicvrlja         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ Use 'N', 'E', 'S' or 'W'!"
 # define WE_IDENTIFIER "WE"
 # define F_IDENTIFIER "F"
 # define C_IDENTIFIER "C"
+# define WALK_CHAR 'X'
 
 /* --------> Structures <-------- */
 
@@ -88,5 +89,6 @@ t_map_info	get_map_infos(int fd, int *fd_read_count);
 bool		try_fill_map_arr(t_cub_data *data, char **map, int fd);
 bool		try_parse_color(t_id_info *inf, int fd, char *buf, int *byts_read);
 bool		try_parse_texture(t_id_info *inf, int fd, char *buf, int *byt_read);
+bool		check_map(char **arr, int wid, int hei);
 
 #endif

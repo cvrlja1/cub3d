@@ -6,7 +6,7 @@
 /*   By: nightcore <nightcore@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 21:04:53 by nicvrlja          #+#    #+#             */
-/*   Updated: 2025/02/03 13:41:21 by nightcore        ###   ########.fr       */
+/*   Updated: 2025/02/04 15:51:47 by nightcore        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@
 # include <limits.h>
 # include <string.h>
 # include <fcntl.h>
+# include <math.h>
+# include <mlx.h>
 
 // ############### //
 //   Definitions   //
@@ -31,6 +33,13 @@
 # define MALLOC_ERR "Memory allocation error!"
 # define OPEN_FD_ERR "Failed to open a file descriptor!"
 # define READ_FD_ERR "Failed to read from a file descriptor!"
+# define MLX_INIT_ERR "Failed to initialize mlx!"
+# define MLX_WIN_ERR "Failed to create mlx window!"
+# define MLX_IMG_ERR "Failed to create mlx image!"
+
+# define WINDOW_WIDTH 1080
+# define WINDOW_HEIGHT 720
+# define PROGRAM_NAME "Genki Cub3D"
 
 /* --------> Structures <-------- */
 
@@ -38,11 +47,9 @@ typedef struct s_player
 {
 	float	x;
 	float	y;
-	float	rot;
+	double	rot;
 }	t_player;
 
-// maybe incude textures here, ceiling and floor color
-// needs a more fitting name, can't think of any right now
 typedef struct s_map
 {
 	char	**arr;
@@ -60,10 +67,20 @@ typedef struct s_textures
 	char	*we_path;
 }	t_textures;
 
+typedef struct s_image
+{
+	void	*mlx_img;
+	char	*mlx_addr;
+	int		bpp;
+	int		size_line;
+	int		endian;
+}	t_image;
+
 typedef struct s_cub_data
 {
 	void		*mlx;
 	void		*win;
+	t_image		*img;
 	t_player	*player;
 	t_map		*map;
 	t_textures	*textures;
@@ -72,28 +89,37 @@ typedef struct s_cub_data
 /* --------> Functions <-------- */
 
 // ############### //
-//     Parsing     //
+//       Misc      //
 // ############### //
 
-bool	try_parse_map(int argc, char **argv, t_cub_data *data);
+bool	try_initialization(int argc, char **argv, t_cub_data *data);
+void	hande_player_input(int keycode, t_cub_data *data);
+void	raycast_image(t_cub_data *data);
 
 // ############### //
-//     Errors      //
+//       Mlx       //
 // ############### //
 
-void	print_error(char *msg);
+bool	try_mlx_setup(t_cub_data *data);
+t_image	*create_image(void *mlx_ptr);
+void	put_pixel_on_img(t_image *img, int x, int y, int color);
+int		key_hook(int keycode, t_cub_data *data);
+int		render(void *arg);
 
 // ############### //
 //      Utils      //
 // ############### //
 
+void	print_error(char *msg);
 bool	is_whitespace(char c);
 
 // ############### //
 //  Close & Free   //
 // ############### //
 
-void	close_cub(t_cub_data *data);
+int		close_cub_mlx(t_cub_data *data);
+void	close_cub(t_cub_data *data, int exit_code);
+void	free_cub(t_cub_data *data);
 void	free_map_arr(char **map);
 
 #endif
