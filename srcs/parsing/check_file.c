@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_file.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nightcore <nightcore@student.42.fr>        +#+  +:+       +#+        */
+/*   By: tluegham <tluegham@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/02 21:26:30 by nightcore         #+#    #+#             */
-/*   Updated: 2025/02/03 21:33:41 by nightcore        ###   ########.fr       */
+/*   Updated: 2025/02/18 14:31:39 by tluegham         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ static bool	try_setup_init_data(t_cub_data *data, char *file_path, int fd)
 	data->map->arr = get_map_arr(data, file_path, fd, bytes_read);
 	if (data->map->arr == NULL)
 		return (free_cub(data), false);
+	data->player->fov_mult = 1;
 	return (true);
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fill_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nightcore <nightcore@student.42.fr>        +#+  +:+       +#+        */
+/*   By: tluegham <tluegham@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 01:53:41 by nightcore         #+#    #+#             */
-/*   Updated: 2025/02/04 17:18:15 by nightcore        ###   ########.fr       */
+/*   Updated: 2025/02/18 16:18:09 by tluegham         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,16 +16,15 @@ static void	handle_special_map_char(t_cub_data *data, char *c, int x, int y)
 {
 	if (*c == 'N' || *c == 'E' || *c == 'S' || *c == 'W')
 	{
-		*data->player = (t_player){.x = x, .y = y, .rot = 0};
-		//*data->player = (t_player){.x = x + 0.5, .y = y + 0.5, .rot = 0};
+		*data->player = (t_player){.x = x + 0.5, .y = y + 0.5, .rot = 0};
 		if (*c == 'N')
-			data->player->rot = 270 * M_PI / 180;
-		else if (*c == 'E')
-			data->player->rot = 0;
-		else if (*c == 'S')
-			data->player->rot = 90 * M_PI / 180;
-		else if (*c == 'W')
 			data->player->rot = 180 * M_PI / 180;
+		else if (*c == 'E')
+			data->player->rot = 270 * M_PI / 180;
+		else if (*c == 'S')
+			data->player->rot = 0 * M_PI / 180;
+		else if (*c == 'W')
+			data->player->rot = 90 * M_PI / 180;
 		*c = '0';
 	}
 }
