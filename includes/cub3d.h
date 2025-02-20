@@ -6,7 +6,7 @@
 /*   By: nightcore <nightcore@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 21:04:53 by nicvrlja          #+#    #+#             */
-/*   Updated: 2025/02/20 11:22:28 by nightcore        ###   ########.fr       */
+/*   Updated: 2025/02/20 12:52:48 by nightcore        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,6 +141,8 @@ void	print_error(char *msg);
 bool	is_whitespace(char c);
 void	rotate_vector2(t_vector2 *vect, double rad);
 void	normalize_vector2(t_vector2 *vect);
+void	div_vector2(t_vector2 *vect, float div);
+void	mult_vector2(t_vector2 *vect, float mult);
 
 // ############### //
 //  Close & Free   //

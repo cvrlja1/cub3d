@@ -6,7 +6,7 @@
 /*   By: nightcore <nightcore@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 18:49:13 by nightcore         #+#    #+#             */
-/*   Updated: 2025/02/20 12:37:52 by nightcore        ###   ########.fr       */
+/*   Updated: 2025/02/20 12:53:11 by nightcore        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,7 @@ static void	get_move_direction(t_vector2 *vect, t_cub_data *data)
 	vect->y *= PLAYER_MOVE_MULT;
 	if (data->player->mov->is_spriting)
 	{
-		vect->x *= 3;
-		vect->y *= 3;
+		mult_vector2(vect, 3);
 		data->player->fov_mult = 1.05;
 	}
 	else

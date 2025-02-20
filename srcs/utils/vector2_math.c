@@ -6,7 +6,7 @@
 /*   By: nightcore <nightcore@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 23:41:41 by nightcore         #+#    #+#             */
-/*   Updated: 2025/02/20 12:17:27 by nightcore        ###   ########.fr       */
+/*   Updated: 2025/02/20 12:52:30 by nightcore        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ void	rotate_vector2(t_vector2 *vect, double rad)
 	vect->y = y;
 }
 
-// maybe change to quicker aproximation algorithm...
 void	normalize_vector2(t_vector2 *vect)
 {
 	float	len;
@@ -31,4 +30,16 @@ void	normalize_vector2(t_vector2 *vect)
 	len = sqrt((vect->x * vect->x) + (vect->y * vect->y));
 	vect->x = vect->x / len;
 	vect->y = vect->y / len;
+}
+
+void	mult_vector2(t_vector2 *vect, float mult)
+{
+	vect->x *= mult;
+	vect->y *= mult;
+}
+
+void	div_vector2(t_vector2 *vect, float div)
+{
+	vect->x /= div;
+	vect->y /= div;
 }
