@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   close_program.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tluegham <tluegham@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nightcore <nightcore@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 00:00:10 by nightcore         #+#    #+#             */
-/*   Updated: 2025/02/18 18:17:13 by tluegham         ###   ########.fr       */
+/*   Updated: 2025/02/19 21:09:25 by nightcore        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,11 @@ void	free_cub(t_cub_data *data)
 	free_map(data->map);
 	free_textures(data->textures);
 	if (data->player != NULL)
+	{
+		if (data->player->mov != NULL)
+			free(data->player->mov);
 		free(data->player);
+	}
 }
 
 void	close_cub(t_cub_data *data, int exit_code)

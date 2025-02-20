@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   handle_player_input.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tluegham <tluegham@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nightcore <nightcore@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 23:09:55 by nightcore         #+#    #+#             */
-/*   Updated: 2025/02/18 16:54:37 by tluegham         ###   ########.fr       */
+/*   Updated: 2025/02/19 20:35:32 by nightcore        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "input.h"
 
-void	rotate_player(int keycode, t_player *player)
+static void	rotate_player(int keycode, t_player *player)
 {
 	const int	rot_amount = 5;
 	double		rot_degrees;
@@ -29,8 +29,20 @@ void	rotate_player(int keycode, t_player *player)
 	player->rot = rot_degrees * M_PI / 180;
 }
 
-void	hande_player_input(int keycode, t_cub_data *data)
+void	handle_release(int keycode, t_cub_data *data)
+{
+	if (is_move_input(keycode))
+		change_mov_dir(data->player->mov, keycode, -1);
+	if (keycode == XK_Shift_L)
+		data->player->mov->is_spriting = false;
+}
+
+void	handle_press(int keycode, t_cub_data *data)
 {
 	if (keycode == XK_Left || keycode == XK_Right)
 		rotate_player(keycode, data->player);
+	if (is_move_input(keycode))
+		change_mov_dir(data->player->mov, keycode, 1);
+	if (keycode == XK_Shift_L)
+		data->player->mov->is_spriting = true;
 }

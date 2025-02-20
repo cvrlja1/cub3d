@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tluegham <tluegham@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nightcore <nightcore@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 21:04:53 by nicvrlja          #+#    #+#             */
-/*   Updated: 2025/02/18 17:02:29 by tluegham         ###   ########.fr       */
+/*   Updated: 2025/02/20 11:22:28 by nightcore        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,12 +53,27 @@
 
 /* --------> Structures <-------- */
 
-typedef struct s_player
+typedef struct s_vector2
 {
 	float	x;
 	float	y;
-	double	rot;
-	double	fov_mult;
+}	t_vector2;
+
+typedef struct s_mov_vars
+{
+	int		dir_x;
+	int		dir_y;
+	float	velocity;
+	bool	is_spriting;
+}	t_mov_vars;
+
+typedef struct s_player
+{
+	float		x;
+	float		y;
+	double		rot;
+	double		fov_mult;
+	t_mov_vars	*mov;
 }	t_player;
 
 typedef struct s_map
@@ -105,6 +120,7 @@ typedef struct s_cub_data
 
 bool	try_initialization(int argc, char **argv, t_cub_data *data);
 void	raycast_image(t_cub_data *data);
+void	move_player(t_cub_data *data);
 
 // ############### //
 //       Mlx       //
@@ -123,6 +139,8 @@ int		update(void *arg);
 
 void	print_error(char *msg);
 bool	is_whitespace(char c);
+void	rotate_vector2(t_vector2 *vect, double rad);
+void	normalize_vector2(t_vector2 *vect);
 
 // ############### //
 //  Close & Free   //

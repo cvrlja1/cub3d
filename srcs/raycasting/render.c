@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tluegham <tluegham@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nightcore <nightcore@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 21:47:29 by nightcore         #+#    #+#             */
-/*   Updated: 2025/02/18 17:21:27 by tluegham         ###   ########.fr       */
+/*   Updated: 2025/02/20 11:26:33 by nightcore        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ static void	setup_ray(t_ray *ray, t_cub_data *data, int x)
 	ray->rot = data->player->rot + ray->relative_rot;
 	ray->dir->x = cos(ray->rot);
 	ray->dir->y = sin(ray->rot);
-	ray->map_x = (int)ray->start->x;
-	ray->map_y = (int)ray->start->y;
+	ray->map_x = (int) ray->start->x;
+	ray->map_y = (int) ray->start->y;
 	tmp = ray->dir->y / ray->dir->x;
 	ray->step_size->x = sqrt(1 + tmp * tmp);
 	tmp = ray->dir->x / ray->dir->y;

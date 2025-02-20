@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tluegham <tluegham@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nightcore <nightcore@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 20:25:04 by nightcore         #+#    #+#             */
-/*   Updated: 2025/02/18 17:19:22 by tluegham         ###   ########.fr       */
+/*   Updated: 2025/02/20 00:26:47 by nightcore        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,6 @@
 // ############### //
 
 /* --------> Structures <-------- */
-
-typedef struct s_vector2
-{
-	float	x;
-	float	y;
-}	t_vector2;
 
 typedef enum e_side
 {
@@ -56,8 +50,5 @@ typedef struct s_ray
 void	draw_vertical_line(t_ray *ray, t_image *img, int x_pos);
 void	fill_image_background(t_cub_data *data);
 void	dda(t_ray *ray, t_map *map);
-
-void	rotate_vector2(t_vector2 *vect, double rad);
-void	normalize_vector2(t_vector2 *vect);
 
 #endif
