@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_to_image.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tluegham <tluegham@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nightcore <nightcore@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 04:47:27 by nightcore         #+#    #+#             */
-/*   Updated: 2025/02/18 16:08:56 by tluegham         ###   ########.fr       */
+/*   Updated: 2025/02/20 12:48:08 by nightcore        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ static int	get_line_height(t_ray *ray)
 		distance = ray->length->x - ray->step_size->x;
 	else
 		distance = ray->length->y - ray->step_size->y;
+	distance = distance * cos(ray->relative_rot);
 	height = (int) WINDOW_HEIGHT / distance;
 	return (height);
 }
@@ -42,7 +43,7 @@ void	draw_vertical_line(t_ray *ray, t_image *img, int x_pos)
 	color = 0x222222;
 	if (ray->side == NO_SO)
 		color /= 2;
-	while (start < end)
+	while (start <= end)
 	{
 		put_pixel_on_img(img, x_pos, start, color);
 		start++;

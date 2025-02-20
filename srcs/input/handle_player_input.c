@@ -6,16 +6,15 @@
 /*   By: nightcore <nightcore@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 23:09:55 by nightcore         #+#    #+#             */
-/*   Updated: 2025/02/04 17:13:09 by nightcore        ###   ########.fr       */
+/*   Updated: 2025/02/20 13:49:14 by nightcore        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
-#include <X11/keysym.h>
+#include "input.h"
 
-void	rotate_player(int keycode, t_player *player)
+static void	rotate_player(int keycode, t_player *player)
 {
-	const int	rot_amount = 5;
+	const int	rot_amount = 10;
 	double		rot_degrees;
 
 	rot_degrees = player->rot * 180 / M_PI;
@@ -30,8 +29,22 @@ void	rotate_player(int keycode, t_player *player)
 	player->rot = rot_degrees * M_PI / 180;
 }
 
-void	hande_player_input(int keycode, t_cub_data *data)
+void	handle_release(int keycode, t_cub_data *data)
 {
+	if (is_move_input(keycode))
+		change_mov_dir(data->player->mov, keycode, -1);
+	if (keycode == XK_Shift_L)
+		data->player->mov->is_spriting = false;
+}
+
+void	handle_press(int keycode, t_cub_data *data)
+{
+	if (keycode == XK_Escape)
+		close_cub(data, 0);
 	if (keycode == XK_Left || keycode == XK_Right)
 		rotate_player(keycode, data->player);
+	if (is_move_input(keycode))
+		change_mov_dir(data->player->mov, keycode, 1);
+	if (keycode == XK_Shift_L)
+		data->player->mov->is_spriting = true;
 }

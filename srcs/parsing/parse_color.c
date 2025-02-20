@@ -6,13 +6,13 @@
 /*   By: nightcore <nightcore@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 15:34:54 by nightcore         #+#    #+#             */
-/*   Updated: 2025/02/03 19:11:17 by nightcore        ###   ########.fr       */
+/*   Updated: 2025/02/20 14:00:08 by nightcore        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
 
-static int	get_rgb_nbr(int fd, char *buf, int *bytes_read, bool is_b_value)
+static int	get_rgb_nbr(int fd, char *buf, int *bytes_read)
 {
 	char	nbr[4];
 	int		j;
@@ -22,9 +22,7 @@ static int	get_rgb_nbr(int fd, char *buf, int *bytes_read, bool is_b_value)
 	ft_memset((void *) nbr, 0, 4 * sizeof(char));
 	while (j < 3)
 	{
-		if (j != 0 && *buf == ',')
-			break ;
-		if (j != 0 && is_b_value && is_whitespace(*buf))
+		if (j != 0 && (*buf == ',' || is_whitespace(*buf)))
 			break ;
 		if (!ft_isdigit(*buf))
 			return (print_error(CLR_RANGE_ERR), -1);
@@ -59,7 +57,7 @@ bool	try_parse_color(t_id_info *info, int fd, char *buf, int *bytes_read)
 	*(int *) info->ptr_ref = 0;
 	while (i < 3)
 	{
-		rgb_value = get_rgb_nbr(fd, buf, bytes_read, i == 2);
+		rgb_value = get_rgb_nbr(fd, buf, bytes_read);
 		if (rgb_value < 0)
 			return (false);
 		*(int *) info->ptr_ref |= rgb_value << ((2 - i) * 8);
