@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_to_image.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nicvrlja <nicvrlja@student.42vienna.com    +#+  +:+       +#+        */
+/*   By: nightcore <nightcore@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 04:47:27 by nightcore         #+#    #+#             */
-/*   Updated: 2025/02/20 20:17:49 by nicvrlja         ###   ########.fr       */
+/*   Updated: 2025/02/20 21:18:35 by nightcore        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ static int	get_line_height(t_ray *ray)
 		distance = ray->length->x - ray->step_size->x;
 	else
 		distance = ray->length->y - ray->step_size->y;
+	distance = distance * cos(ray->relative_rot);
 	height = (int) WINDOW_HEIGHT / distance;
 	return (height);
 }
@@ -46,6 +47,9 @@ void	draw_vertical_line(t_ray *ray, t_image *texture, t_image *img, int x_pos)
 	end = line_height / 2 + WINDOW_HEIGHT / 2;
 	if (end >= WINDOW_HEIGHT)
 		end = WINDOW_HEIGHT - 1;
+	color = 0x222222;
+	if (ray->side == NO_SO)
+		color /= 2;
 
 	// Calculate the X texture coordinate based on the ray's fractional position
 	if (ray->side == EA_WE)
@@ -58,7 +62,7 @@ void	draw_vertical_line(t_ray *ray, t_image *texture, t_image *img, int x_pos)
 
 	// Iterate through the vertical line and apply the texture
 	y = start;
-	while (y < end)
+	while (y <= end)
 	{
 		// Calculate the Y texture coordinate based on the vertical scaling of the line
 		tex_y = ((y - start) * texture->height) / line_height;

@@ -41,7 +41,9 @@ CFILES_MLX			= setup.c \
 					  load_texture.c \
 					  hooks.c
 
-CFILES_INPUT		= handle_player_input.c
+CFILES_INPUT		= handle_player_input.c \
+					  movement.c \
+					  utils.c
 
 CFILES_UTILS		= is_whitespace.c \
 					  vector2_math.c

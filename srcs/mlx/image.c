@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   image.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nicvrlja <nicvrlja@student.42vienna.com    +#+  +:+       +#+        */
+/*   By: nightcore <nightcore@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 21:03:41 by nightcore         #+#    #+#             */
-/*   Updated: 2025/02/18 18:26:34 by nicvrlja         ###   ########.fr       */
+/*   Updated: 2025/02/20 21:18:35 by nightcore        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	put_pixel_on_img(t_image *img, int x, int y, int color)
 
 	if (x < 0 || x >= WINDOW_WIDTH || y < 0 || y >= WINDOW_HEIGHT)
 		return ;
-	pixel_addr = img->mlx_addr + img->size_line * y + img->bpp / 8 * x;
+	pixel_addr = img->mlx_addr + (y * img->size_line + x * img->bpp / 8);
 	*(int *) pixel_addr = color;
 }
 

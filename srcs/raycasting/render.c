@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nicvrlja <nicvrlja@student.42vienna.com    +#+  +:+       +#+        */
+/*   By: nightcore <nightcore@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 21:47:29 by nightcore         #+#    #+#             */
-/*   Updated: 2025/02/20 20:00:50 by nicvrlja         ###   ########.fr       */
+/*   Updated: 2025/02/20 21:18:35 by nightcore        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,13 @@ static void	setup_ray(t_ray *ray, t_cub_data *data, int x)
 {
 	float	tmp;
 
-	ray->rot = data->player->rot + (2 * x / (float) WINDOW_WIDTH - 1) * \
-				FOV_RAD_HALF * data->player->fov_mult;
+	ray->relative_rot = (2 * x / (float) WINDOW_WIDTH - 1) * \
+							FOV_RAD_HALF * data->player->fov_mult;
+	ray->rot = data->player->rot + ray->relative_rot;
 	ray->dir->x = cos(ray->rot);
 	ray->dir->y = sin(ray->rot);
-	ray->map_x = (int)ray->start->x;
-	ray->map_y = (int)ray->start->y;
+	ray->map_x = (int) ray->start->x;
+	ray->map_y = (int) ray->start->y;
 	tmp = ray->dir->y / ray->dir->x;
 	ray->step_size->x = sqrt(1 + tmp * tmp);
 	tmp = ray->dir->x / ray->dir->y;

@@ -1,54 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   raycasting.h                                       :+:      :+:    :+:   */
+/*   input.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nightcore <nightcore@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/03 20:25:04 by nightcore         #+#    #+#             */
-/*   Updated: 2025/02/20 21:19:00 by nightcore        ###   ########.fr       */
+/*   Created: 2025/02/18 16:39:23 by tluegham          #+#    #+#             */
+/*   Updated: 2025/02/20 12:27:58 by nightcore        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef RAYCASTING_H
-# define RAYCASTING_H
+#ifndef INPUT_H
+# define INPUT_H
 
 /* --------> Includes <-------- */
 
 # include "cub3d.h"
+# include "X11/keysym.h"
 
 // ############### //
 //   Definitions   //
 // ############### //
 
+# define FORWARD XK_w
+# define LEFT XK_a
+# define RIGHT XK_d
+# define BACKWARD XK_s
+
+# define PLAYER_MOVE_MULT 0.03
+
 /* --------> Structures <-------- */
-
-typedef enum e_side
-{
-	NO_SO,
-	EA_WE
-}	t_side;
-
-typedef struct s_ray
-{
-	t_vector2	*start;
-	float		rot;
-	float		relative_rot;
-	t_vector2	*dir;
-	t_vector2	*step_size;
-	t_vector2	*length;
-	int			step_x;
-	int			step_y;
-	int			map_x;
-	int			map_y;
-	t_side		side;
-	bool		hit;
-}	t_ray;
 
 /* --------> Functions <-------- */
 
-void	draw_vertical_line(t_ray *ray, t_image *texture, t_image *img, int x_pos);
-void	fill_image_background(t_cub_data *data);
-void	dda(t_ray *ray, t_map *map);
+void	handle_release(int keycode, t_cub_data *data);
+void	handle_press(int keycode, t_cub_data *data);
+bool	is_move_input(int key);
+void	change_mov_dir(t_mov_vars *mov, int key, int dir);
 
 #endif
