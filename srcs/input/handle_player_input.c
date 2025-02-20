@@ -6,7 +6,7 @@
 /*   By: nightcore <nightcore@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 23:09:55 by nightcore         #+#    #+#             */
-/*   Updated: 2025/02/19 20:35:32 by nightcore        ###   ########.fr       */
+/*   Updated: 2025/02/20 13:49:14 by nightcore        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static void	rotate_player(int keycode, t_player *player)
 {
-	const int	rot_amount = 5;
+	const int	rot_amount = 10;
 	double		rot_degrees;
 
 	rot_degrees = player->rot * 180 / M_PI;
@@ -39,6 +39,8 @@ void	handle_release(int keycode, t_cub_data *data)
 
 void	handle_press(int keycode, t_cub_data *data)
 {
+	if (keycode == XK_Escape)
+		close_cub(data, 0);
 	if (keycode == XK_Left || keycode == XK_Right)
 		rotate_player(keycode, data->player);
 	if (is_move_input(keycode))

@@ -6,7 +6,7 @@
 /*   By: nightcore <nightcore@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 21:34:29 by nightcore         #+#    #+#             */
-/*   Updated: 2025/02/20 11:22:17 by nightcore        ###   ########.fr       */
+/*   Updated: 2025/02/20 13:48:49 by nightcore        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,25 +14,13 @@
 
 int	on_key_pressed(int keycode, void *data)
 {
-	t_player	*plr;
-
-	plr = ((t_cub_data *) data)->player;
-	if (keycode == XK_Escape)
-		close_cub(data, 0);
 	handle_press(keycode, data);
-	printf("player dir: [%d, %d]\n", plr->mov->dir_x, plr->mov->dir_y);
-	(void) plr;
 	return (0);
 }
 
 int	on_key_released(int keycode, void *data)
 {
-	t_player	*plr;
-
-	plr = ((t_cub_data *) data)->player;
 	handle_release(keycode, data);
-	printf("player dir: [%d, %d]\n", plr->mov->dir_x, plr->mov->dir_y);
-	(void) plr;
 	return (0);
 }
 

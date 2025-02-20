@@ -6,7 +6,7 @@
 /*   By: nightcore <nightcore@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 21:04:53 by nicvrlja          #+#    #+#             */
-/*   Updated: 2025/02/20 12:52:48 by nightcore        ###   ########.fr       */
+/*   Updated: 2025/02/20 13:02:38 by nightcore        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,6 @@ typedef struct s_mov_vars
 {
 	int		dir_x;
 	int		dir_y;
-	float	velocity;
 	bool	is_spriting;
 }	t_mov_vars;
 

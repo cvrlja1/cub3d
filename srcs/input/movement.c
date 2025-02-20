@@ -6,7 +6,7 @@
 /*   By: nightcore <nightcore@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 18:49:13 by nightcore         #+#    #+#             */
-/*   Updated: 2025/02/20 12:53:11 by nightcore        ###   ########.fr       */
+/*   Updated: 2025/02/20 13:03:19 by nightcore        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,7 @@ static void	get_move_direction(t_vector2 *vect, t_cub_data *data)
 {
 	normalize_vector2(vect);
 	rotate_vector2(vect, data->player->rot);
-	vect->x *= PLAYER_MOVE_MULT;
-	vect->y *= PLAYER_MOVE_MULT;
+	mult_vector2(vect, PLAYER_MOVE_MULT);
 	if (data->player->mov->is_spriting)
 	{
 		mult_vector2(vect, 3);
