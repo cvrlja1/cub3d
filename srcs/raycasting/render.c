@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tluegham <tluegham@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nicvrlja <nicvrlja@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 21:47:29 by nightcore         #+#    #+#             */
-/*   Updated: 2025/02/18 16:10:43 by tluegham         ###   ########.fr       */
+/*   Updated: 2025/02/20 20:00:50 by nicvrlja         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,13 +41,14 @@ void	raycast_image(t_cub_data *data)
 	ray.step_size = &(t_vector2){.x = 0, .y = 0};
 	ray.length = &(t_vector2){.x = 0, .y = 0};
 	fill_image_background(data);
+	data->wall = load_texture("./textures/wall.xpm", data);
 	while (x < WINDOW_WIDTH)
 	{
 		setup_ray(&ray, data, x);
 		dda(&ray, data->map);
 		if (!ray.hit)
 			continue ;
-		draw_vertical_line(&ray, data->img, x);
+		draw_vertical_line(&ray, data->wall, data->img, x);
 		x++;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: nicvrlja <nicvrlja@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 21:34:29 by nightcore         #+#    #+#             */
-/*   Updated: 2025/02/18 18:53:16 by nicvrlja         ###   ########.fr       */
+/*   Updated: 2025/02/20 19:33:32 by nicvrlja         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,7 @@ int	render(void *arg)
 	t_cub_data	*data;
 
 	data = (t_cub_data *) arg;
-	t_xpm *img = load_xpm("./textures/wall.xpm", data);
 	raycast_image(data);
 	mlx_put_image_to_window(data->mlx, data->win, data->img->mlx_img, 0, 0);
-	mlx_put_image_to_window(data->mlx, data->win, img->img, WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2);
-	mlx_destroy_image(data->mlx, img->img);
-	free(img);
 	return (0);
 }

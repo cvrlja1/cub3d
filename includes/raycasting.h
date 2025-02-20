@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tluegham <tluegham@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nicvrlja <nicvrlja@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 20:25:04 by nightcore         #+#    #+#             */
-/*   Updated: 2025/02/18 16:21:40 by tluegham         ###   ########.fr       */
+/*   Updated: 2025/02/20 20:00:36 by nicvrlja         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ typedef struct s_ray
 
 /* --------> Functions <-------- */
 
-void	draw_vertical_line(t_ray *ray, t_image *img, int x_pos);
+void	draw_vertical_line(t_ray *ray, t_image *texture, t_image *img, int x_pos);
 void	fill_image_background(t_cub_data *data);
 void	dda(t_ray *ray, t_map *map);
 

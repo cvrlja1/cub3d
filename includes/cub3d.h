@@ -6,7 +6,7 @@
 /*   By: nicvrlja <nicvrlja@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 21:04:53 by nicvrlja          #+#    #+#             */
-/*   Updated: 2025/02/18 18:47:49 by nicvrlja         ###   ########.fr       */
+/*   Updated: 2025/02/20 19:57:04 by nicvrlja         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,13 +78,6 @@ typedef struct s_textures
 	char	*we_path;
 }	t_textures;
 
-typedef struct s_xpm
-{
-	void	*img;
-	int		width;
-	int		height;
-} t_xpm;
-
 typedef struct s_image
 {
 	void	*mlx_img;
@@ -92,6 +85,8 @@ typedef struct s_image
 	int		bpp;
 	int		size_line;
 	int		endian;
+	int		width;
+	int		height;
 }	t_image;
 
 typedef struct s_cub_data
@@ -99,6 +94,7 @@ typedef struct s_cub_data
 	void		*mlx;
 	void		*win;
 	t_image		*img;
+	t_image		*wall;
 	t_player	*player;
 	t_map		*map;
 	t_textures	*textures;
@@ -120,7 +116,8 @@ void	raycast_image(t_cub_data *data);
 
 bool	try_mlx_setup(t_cub_data *data);
 t_image	*create_image(void *mlx_ptr);
-t_xpm	*load_xpm(char *filename, t_cub_data *data);
+t_image	*load_texture(char *filename, t_cub_data *data);
+int		get_pixel_color(t_image *texture, int x, int y);
 void	put_pixel_on_img(t_image *img, int x, int y, int color);
 int		key_hook(int keycode, t_cub_data *data);
 int		render(void *arg);
