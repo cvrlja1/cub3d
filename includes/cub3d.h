@@ -6,7 +6,7 @@
 /*   By: nicvrlja <nicvrlja@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 21:04:53 by nicvrlja          #+#    #+#             */
-/*   Updated: 2025/03/25 12:20:43 by nicvrlja         ###   ########.fr       */
+/*   Updated: 2025/03/25 14:37:29 by nicvrlja         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,6 +130,8 @@ void	move_player(t_cub_data *data);
 
 bool	try_mlx_setup(t_cub_data *data);
 t_image	*create_image(void *mlx_ptr);
+t_image	*load_texture(char *filename, t_cub_data *data);
+int		get_pixel_color(t_image *texture, int x, int y);
 void	put_pixel_on_img(t_image *img, int x, int y, int color);
 int		on_key_pressed(int keycode, void *data);
 int		on_key_released(int keycode, void *data);
