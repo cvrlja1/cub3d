@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_to_image.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nightcore <nightcore@student.42.fr>        +#+  +:+       +#+        */
+/*   By: nicvrlja <nicvrlja@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 04:47:27 by nightcore         #+#    #+#             */
-/*   Updated: 2025/02/20 12:48:08 by nightcore        ###   ########.fr       */
+/*   Updated: 2025/03/25 14:32:14 by nicvrlja         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,14 +25,41 @@ static int	get_line_height(t_ray *ray)
 	height = (int) WINDOW_HEIGHT / distance;
 	return (height);
 }
-
-void	draw_vertical_line(t_ray *ray, t_image *img, int x_pos)
+int get_pixel_from_texture(t_image *texture, int x, int y)
 {
-	int	line_height;
-	int	start;
-	int	end;
-	int	color;
+	char	*pixel;
+	int		color;
 
+	pixel = texture->mlx_addr + (y * texture->size_line + x * (texture->bpp / 8));
+	color = *(int *)pixel;
+	return (color);
+}
+
+void draw_vertical_line(t_ray *ray, t_image *img, int x_pos, t_image *wall)
+{
+	int		line_height;
+	int		start;
+	int		end;
+	int		y;
+	int		tex_x;
+	int		tex_y;
+	int		color;
+	double	step;
+	double	tex_pos;
+	float	wall_x;
+
+	if (ray->side == NO_SO)
+		wall_x = ray->start->x + ray->length->x;
+	else
+		wall_x = ray->start->y + ray->length->y;
+	wall_x -= floor(wall_x);
+
+	tex_x = (int)(wall_x * (double)wall->width);
+	if ((ray->side == NO_SO && ray->dir->x > 0) || 
+	    (ray->side == EA_WE && ray->dir->y < 0))
+		tex_x = wall->width - tex_x - 1;
+ 
+	tex_x = tex_x % wall->width;
 	line_height = get_line_height(ray);
 	start = -line_height / 2 + WINDOW_HEIGHT / 2;
 	if (start < 0)
@@ -40,15 +67,23 @@ void	draw_vertical_line(t_ray *ray, t_image *img, int x_pos)
 	end = line_height / 2 + WINDOW_HEIGHT / 2;
 	if (end >= WINDOW_HEIGHT)
 		end = WINDOW_HEIGHT - 1;
-	color = 0x222222;
-	if (ray->side == NO_SO)
-		color /= 2;
-	while (start <= end)
+
+	step = 1.0 * wall->height / line_height;
+	tex_pos = (start - WINDOW_HEIGHT / 2 + line_height / 2) * step;
+
+	y = start;
+	while (y <= end)
 	{
-		put_pixel_on_img(img, x_pos, start, color);
-		start++;
+		tex_y = (int)tex_pos & (wall->height - 1);
+		tex_pos += step;
+
+		color = get_pixel_from_texture(wall, tex_x, tex_y);
+
+		put_pixel_on_img(img, x_pos, y, color);
+		y++;
 	}
 }
+
 
 void	fill_image_background(t_cub_data *data)
 {

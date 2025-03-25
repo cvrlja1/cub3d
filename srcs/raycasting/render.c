@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nightcore <nightcore@student.42.fr>        +#+  +:+       +#+        */
+/*   By: nicvrlja <nicvrlja@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 21:47:29 by nightcore         #+#    #+#             */
-/*   Updated: 2025/02/20 11:26:33 by nightcore        ###   ########.fr       */
+/*   Updated: 2025/03/25 12:24:53 by nicvrlja         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	raycast_image(t_cub_data *data)
 		dda(&ray, data->map);
 		if (!ray.hit)
 			continue ;
-		draw_vertical_line(&ray, data->img, x);
+		draw_vertical_line(&ray, data->img, x, data->walls);
 		x++;
 	}
 }
