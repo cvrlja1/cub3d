@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handle_player_input.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nightcore <nightcore@student.42.fr>        +#+  +:+       +#+        */
+/*   By: nicvrlja <nicvrlja@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 23:09:55 by nightcore         #+#    #+#             */
-/*   Updated: 2025/02/20 13:49:14 by nightcore        ###   ########.fr       */
+/*   Updated: 2025/03/26 12:59:18 by nicvrlja         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

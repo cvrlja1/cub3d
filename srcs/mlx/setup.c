@@ -6,7 +6,7 @@
 /*   By: nicvrlja <nicvrlja@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 21:12:37 by nightcore         #+#    #+#             */
-/*   Updated: 2025/03/25 14:37:37 by nicvrlja         ###   ########.fr       */
+/*   Updated: 2025/03/26 13:57:10 by nicvrlja         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static int	load_images(t_cub_data *data)
 	data->walls = (t_image *) ft_calloc(1, sizeof(t_image));
 	if (!data->walls)
 		return (0);
-	data->walls->mlx_img = mlx_xpm_file_to_image(data->mlx, "./assets/brick.xpm", &data->walls->width, &data->walls->height);
+	data->walls->mlx_img = mlx_xpm_file_to_image(data->mlx, "./assets/genki.xpm", &data->walls->width, &data->walls->height);
 	if (!data->walls->mlx_img)
 		return (printf("nicht gefunden"), 0);
 	data->walls->mlx_addr = (char *) mlx_get_data_addr(data->walls->mlx_img, &data->walls->bpp, &data->walls->size_line, &data->walls->endian);

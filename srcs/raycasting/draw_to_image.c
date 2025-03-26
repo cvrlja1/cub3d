@@ -6,7 +6,7 @@
 /*   By: nicvrlja <nicvrlja@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 04:47:27 by nightcore         #+#    #+#             */
-/*   Updated: 2025/03/25 14:36:53 by nicvrlja         ###   ########.fr       */
+/*   Updated: 2025/03/26 12:59:30 by nicvrlja         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,11 +47,16 @@ void draw_vertical_line(t_ray *ray, t_image *img, int x_pos, t_image *wall)
 	double	step;
 	double	tex_pos;
 	float	wall_x;
+	float	perpWallDist;
 
-	if (ray->side == NO_SO)
-		wall_x = ray->start->x + ray->length->x;
+	if (ray->side == EA_WE)
+		perpWallDist = ray->length->x - ray->step_size->x;
 	else
-		wall_x = ray->start->y + ray->length->y;
+		perpWallDist = ray->length->y - ray->step_size->y;
+	if (ray->side == NO_SO)
+		wall_x = ray->start->x + perpWallDist * ray->dir->x;
+	else
+		wall_x = ray->start->y + perpWallDist * ray->dir->y;
 	wall_x -= floor(wall_x);
 
 	tex_x = (int)(wall_x * (double)wall->width);
@@ -59,10 +64,7 @@ void draw_vertical_line(t_ray *ray, t_image *img, int x_pos, t_image *wall)
 	    (ray->side == EA_WE && ray->dir->y < 0))
 		tex_x = wall->width - tex_x - 1;
  
-	tex_x = tex_x % wall->width;
 	line_height = get_line_height(ray);
-
-	// Calculate the start and end of the vertical line on the screen
 	start = -line_height / 2 + WINDOW_HEIGHT / 2;
 	if (start < 0)
 		start = 0;
