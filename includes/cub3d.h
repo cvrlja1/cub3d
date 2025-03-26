@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nicvrlja <nicvrlja@student.42vienna.com    +#+  +:+       +#+        */
+/*   By: nightcore <nightcore@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 21:04:53 by nicvrlja          #+#    #+#             */
-/*   Updated: 2025/03/26 16:34:23 by nicvrlja         ###   ########.fr       */
+/*   Updated: 2025/03/26 22:38:48 by nightcore        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@
 # define MLX_INIT_ERR "Failed to initialize mlx!"
 # define MLX_WIN_ERR "Failed to create mlx window!"
 # define MLX_IMG_ERR "Failed to create mlx image!"
+# define MLX_ERR "Bad return from mlx function!"
 
 /* --------> Structures <-------- */
 
@@ -88,10 +89,10 @@ typedef struct s_textures
 {
 	int		ceil_clr;
 	int		flr_clr;
-	char	*no_path;
-	char	*ea_path;
-	char	*so_path;
-	char	*we_path;
+	t_image	*no_path;
+	t_image	*ea_path;
+	t_image	*so_path;
+	t_image	*we_path;
 }	t_textures;
 
 typedef struct s_image

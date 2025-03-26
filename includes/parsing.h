@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nicvrlja <nicvrlja@student.42vienna.com    +#+  +:+       +#+        */
+/*   By: nightcore <nightcore@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/02 22:24:57 by nightcore         #+#    #+#             */
-/*   Updated: 2025/02/18 16:49:32 by nicvrlja         ###   ########.fr       */
+/*   Updated: 2025/03/26 22:56:55 by nightcore        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,10 @@ char		**get_map_arr(t_cub_data *data, char *path, int fd, int bytes_read);
 t_map_info	get_map_infos(int fd, int *fd_read_count);
 bool		try_fill_map_arr(t_cub_data *data, char **map, int fd);
 bool		try_parse_color(t_id_info *inf, int fd, char *buf, int *byts_read);
-bool		try_parse_texture(t_id_info *inf, int fd, char *buf, int *byt_read);
+char		*get_wall_texture_path(t_id_info *inf, int fd, char *buf, \
+								int *byt_read);
+bool		try_load_wall_texture(t_id_info *info, t_cub_data *data, \
+					char *path);
 bool		check_map(char **arr, int wid, int hei);
 
 #endif
