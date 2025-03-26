@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   input.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nightcore <nightcore@student.42.fr>        +#+  +:+       +#+        */
+/*   By: nicvrlja <nicvrlja@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 16:39:23 by tluegham          #+#    #+#             */
-/*   Updated: 2025/02/20 12:27:58 by nightcore        ###   ########.fr       */
+/*   Updated: 2025/03/26 16:40:59 by nicvrlja         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,5 +37,6 @@ void	handle_release(int keycode, t_cub_data *data);
 void	handle_press(int keycode, t_cub_data *data);
 bool	is_move_input(int key);
 void	change_mov_dir(t_mov_vars *mov, int key, int dir);
+void	update_rotation(t_cub_data *data);
 
 #endif

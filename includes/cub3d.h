@@ -6,7 +6,7 @@
 /*   By: nicvrlja <nicvrlja@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 21:04:53 by nicvrlja          #+#    #+#             */
-/*   Updated: 2025/03/25 14:37:29 by nicvrlja         ###   ########.fr       */
+/*   Updated: 2025/03/26 16:34:23 by nicvrlja         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,8 @@ typedef struct s_player
 	double		rot;
 	double		fov_mult;
 	t_mov_vars	*mov;
+	bool		rotate_left;
+	bool		rotate_right;
 }	t_player;
 
 typedef struct s_map

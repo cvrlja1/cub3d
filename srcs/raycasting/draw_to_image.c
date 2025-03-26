@@ -6,7 +6,7 @@
 /*   By: nicvrlja <nicvrlja@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 04:47:27 by nightcore         #+#    #+#             */
-/*   Updated: 2025/03/26 12:59:30 by nicvrlja         ###   ########.fr       */
+/*   Updated: 2025/03/26 16:25:11 by nicvrlja         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,10 +60,10 @@ void draw_vertical_line(t_ray *ray, t_image *img, int x_pos, t_image *wall)
 	wall_x -= floor(wall_x);
 
 	tex_x = (int)(wall_x * (double)wall->width);
-	if ((ray->side == NO_SO && ray->dir->x > 0) || 
-	    (ray->side == EA_WE && ray->dir->y < 0))
+	if ((ray->side == NO_SO && ray->dir->y > 0) || 
+	    (ray->side == EA_WE && ray->dir->x < 0))
 		tex_x = wall->width - tex_x - 1;
- 
+
 	line_height = get_line_height(ray);
 	start = -line_height / 2 + WINDOW_HEIGHT / 2;
 	if (start < 0)
