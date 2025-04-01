@@ -6,7 +6,7 @@
 /*   By: nicvrlja <nicvrlja@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 21:04:53 by nicvrlja          #+#    #+#             */
-/*   Updated: 2025/04/01 12:26:14 by nicvrlja         ###   ########.fr       */
+/*   Updated: 2025/04/01 15:43:42 by nicvrlja         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@
 # define MLX_INIT_ERR "Failed to initialize mlx!"
 # define MLX_WIN_ERR "Failed to create mlx window!"
 # define MLX_IMG_ERR "Failed to create mlx image!"
+# define MLX_ERR "Bad return from mlx function!"
 
 /* --------> Structures <-------- */
 
@@ -84,16 +85,6 @@ typedef struct s_map
 	int		y_len;
 }	t_map;
 
-typedef struct s_textures
-{
-	int		ceil_clr;
-	int		flr_clr;
-	char	*no_path;
-	char	*ea_path;
-	char	*so_path;
-	char	*we_path;
-}	t_textures;
-
 typedef struct s_image
 {
 	void			*mlx_img;
@@ -105,6 +96,25 @@ typedef struct s_image
 	int				height;
 	struct s_image	*next;
 }	t_image;
+
+typedef struct s_paths
+{
+	char	*no;
+	char	*ea;
+	char	*so;
+	char	*we;
+}	t_paths;
+
+typedef struct s_textures
+{
+	t_paths	*paths;
+	int		ceil_clr;
+	int		flr_clr;
+	t_image	*no;
+	t_image	*ea;
+	t_image	*so;
+	t_image	*we;
+}	t_textures;
 
 typedef struct s_cub_data
 {

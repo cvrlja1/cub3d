@@ -6,7 +6,7 @@
 /*   By: nicvrlja <nicvrlja@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 00:00:10 by nightcore         #+#    #+#             */
-/*   Updated: 2025/04/01 12:29:53 by nicvrlja         ###   ########.fr       */
+/*   Updated: 2025/04/01 15:43:46 by nicvrlja         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,18 +35,39 @@ static void	free_map(t_map *map)
 	free(map);
 }
 
-void	free_textures(t_textures *textures)
+static void	try_destory_mlx_img(void *mlx_ptr, t_image *img)
+{
+	if (img == NULL)
+		return ;
+	mlx_destroy_image(mlx_ptr, img->mlx_img);
+	free(img);
+}
+
+static void	free_textures(t_textures *textures, void *mlx_ptr)
 {
 	if (textures == NULL)
 		return ;
-	if (textures->no_path != NULL)
-		free(textures->no_path);
-	if (textures->ea_path != NULL)
-		free(textures->ea_path);
-	if (textures->so_path != NULL)
-		free(textures->so_path);
-	if (textures->we_path != NULL)
-		free(textures->we_path);
+	if (textures->paths != NULL)
+	{
+		if (textures->paths->no != NULL)
+			free(textures->paths->no);
+		if (textures->paths->ea != NULL)
+			free(textures->paths->ea);
+		if (textures->paths->so != NULL)
+			free(textures->paths->so);
+		if (textures->paths->we != NULL)
+			free(textures->paths->we);
+	}
+	(void) mlx_ptr;
+	// the textures have to be properly detroyes/freed here
+	if (textures->no != NULL)
+		try_destory_mlx_img(mlx_ptr, textures->no->mlx_img);
+	if (textures->ea != NULL)
+		try_destory_mlx_img(mlx_ptr, textures->ea->mlx_img);
+	if (textures->so != NULL)
+		try_destory_mlx_img(mlx_ptr, textures->so->mlx_img);
+	if (textures->we != NULL)
+		try_destory_mlx_img(mlx_ptr, textures->we->mlx_img);
 	free(textures);
 	textures = NULL;
 }
@@ -55,8 +76,8 @@ void	free_cub(t_cub_data *data)
 {
 	if (data == NULL)
 		return ;
-	if (data->mlx != NULL && data->img != NULL)
-		mlx_destroy_image(data->mlx, data->img->mlx_img);
+	free_textures(data->textures, data->mlx);
+	try_destory_mlx_img(data->mlx, data->img);
 	if (data->mlx != NULL && data->win != NULL)
 		mlx_destroy_window(data->mlx, data->win);
 	if (data->mlx != NULL)
@@ -64,10 +85,7 @@ void	free_cub(t_cub_data *data)
 		mlx_destroy_display(data->mlx);
 		free(data->mlx);
 	}
-	if (data->img != NULL)
-		free(data->img);
 	free_map(data->map);
-	free_textures(data->textures);
 	if (data->player != NULL)
 	{
 		if (data->player->mov != NULL)
