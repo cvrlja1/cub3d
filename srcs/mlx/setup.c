@@ -3,14 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   setup.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nightcore <nightcore@student.42.fr>        +#+  +:+       +#+        */
+/*   By: nicvrlja <nicvrlja@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 21:12:37 by nightcore         #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2025/04/01 12:26:27 by nicvrlja         ###   ########.fr       */
-=======
-/*   Updated: 2025/03/26 22:20:08 by nightcore        ###   ########.fr       */
->>>>>>> wall_texture_loading
+/*   Updated: 2025/04/01 15:44:37 by nicvrlja         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

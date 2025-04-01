@@ -6,7 +6,7 @@
 /*   By: nicvrlja <nicvrlja@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 00:00:10 by nightcore         #+#    #+#             */
-/*   Updated: 2025/04/01 15:43:46 by nicvrlja         ###   ########.fr       */
+/*   Updated: 2025/04/01 16:21:05 by nicvrlja         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,17 +57,18 @@ static void	free_textures(t_textures *textures, void *mlx_ptr)
 			free(textures->paths->so);
 		if (textures->paths->we != NULL)
 			free(textures->paths->we);
+		free(textures->paths);
 	}
 	(void) mlx_ptr;
 	// the textures have to be properly detroyes/freed here
 	if (textures->no != NULL)
-		try_destory_mlx_img(mlx_ptr, textures->no->mlx_img);
+		try_destory_mlx_img(mlx_ptr, textures->no);
 	if (textures->ea != NULL)
-		try_destory_mlx_img(mlx_ptr, textures->ea->mlx_img);
+		try_destory_mlx_img(mlx_ptr, textures->ea);
 	if (textures->so != NULL)
-		try_destory_mlx_img(mlx_ptr, textures->so->mlx_img);
+		try_destory_mlx_img(mlx_ptr, textures->so);
 	if (textures->we != NULL)
-		try_destory_mlx_img(mlx_ptr, textures->we->mlx_img);
+		try_destory_mlx_img(mlx_ptr, textures->we);
 	free(textures);
 	textures = NULL;
 }

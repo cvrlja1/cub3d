@@ -6,41 +6,36 @@
 /*   By: nicvrlja <nicvrlja@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 18:42:27 by nicvrlja          #+#    #+#             */
-/*   Updated: 2025/04/01 15:43:59 by nicvrlja         ###   ########.fr       */
+/*   Updated: 2025/04/01 16:18:50 by nicvrlja         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
+static bool	try_load_xpm(t_cub_data *data, t_image **texture, char *path)
+{
+	(*texture) = ft_calloc(1, sizeof(t_image));
+	if (!*texture)
+		return (false);
+	(*texture)->mlx_img = mlx_xpm_file_to_image(data->mlx, path, &(*texture)->width, &(*texture)->height);
+	if (!(*texture)->mlx_img)
+		return (false);
+	(*texture)->mlx_addr = mlx_get_data_addr((*texture)->mlx_img, &(*texture)->bpp, &(*texture)->size_line, &(*texture)->endian);
+	if (!(*texture)->mlx_addr)
+		return (false);
+	return (true);
+}
+
 bool	load_textures(t_cub_data *data)
 {
-	int		i;
-	t_image	*prev;
-	t_image	*current;
-	char	*paths[4] = { data->textures->no_path, data->textures->ea_path, data->textures->so_path, data->textures->we_path };
-
-	i = -1;
-	data->walls = NULL;
-	for (int i = 0; paths[0][i] != '\0'; i++) {
-    printf("Character %d: '%c' (ASCII: %d)\n", i, paths[0][i], paths[0][i]);
-}
-	while (++i < 4)
-	{
-		current = (t_image *) ft_calloc(1, sizeof(t_image));
-		if (!current)
-			return (false);
-		current->mlx_img = mlx_xpm_file_to_image(data->mlx, paths[i], &current->width, &current->height);
-		if (!current->mlx_img)
-			return (free(current), false);
-		current->mlx_addr = (char *) mlx_get_data_addr(current->mlx_img, &current->bpp, &current->size_line, &current->endian);
-		if (!current->mlx_addr)
-			return (free(current), false);
-		if (data->walls == NULL)
-            data->walls = current;
-        else
-            prev->next = current;
-		prev = current;
-	}
+	if (!try_load_xpm(data, &data->textures->no, data->textures->paths->no))
+		return (false);
+	if (!try_load_xpm(data, &data->textures->ea, data->textures->paths->ea))
+		return (false);
+	if (!try_load_xpm(data, &data->textures->we, data->textures->paths->we))
+		return (false);
+	if (!try_load_xpm(data, &data->textures->so, data->textures->paths->so))
+		return (false);
 	return (true);
 }
 

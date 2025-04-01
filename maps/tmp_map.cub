@@ -1,8 +1,15 @@
+EA textures/wall_ea.xpm
+SO textures/wall_so.xpm
+NO textures/wall_no.xpm
+WE textures/wall_we.xpm
 
 
+C 255    , 255, 255  
+F 0, 255    ,0   
 
-11111
-10001
-10W01
-10001
-11111
+
+ 11111 
+1000001
+10N0101
+1000001
+ 11111

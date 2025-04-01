@@ -6,7 +6,7 @@
 /*   By: nicvrlja <nicvrlja@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 21:04:53 by nicvrlja          #+#    #+#             */
-/*   Updated: 2025/04/01 15:43:42 by nicvrlja         ###   ########.fr       */
+/*   Updated: 2025/04/01 16:15:04 by nicvrlja         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,6 @@ typedef struct s_image
 	int				endian;
 	int				width;
 	int				height;
-	struct s_image	*next;
 }	t_image;
 
 typedef struct s_paths
@@ -121,7 +120,6 @@ typedef struct s_cub_data
 	void		*mlx;
 	void		*win;
 	t_image		*img;
-	t_image		*walls;
 	t_player	*player;
 	t_map		*map;
 	t_textures	*textures;
