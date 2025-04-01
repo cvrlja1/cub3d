@@ -6,7 +6,7 @@
 /*   By: nightcore <nightcore@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 21:03:53 by nicvrlja          #+#    #+#             */
-/*   Updated: 2025/02/19 19:58:56 by nightcore        ###   ########.fr       */
+/*   Updated: 2025/04/01 15:19:48 by nightcore        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,10 +42,10 @@ static void	debug_textures(t_textures *textures)
 		return ;
 	printf(" Ceiling color: %X\n", textures->ceil_clr);
 	printf(" Floor color:   %X\n", textures->flr_clr);
-	printf(" NO path:       %s\n", textures->no_path);
-	printf(" EA path:       %s\n", textures->ea_path);
-	printf(" SO path:       %s\n", textures->so_path);
-	printf(" WE path:       %s\n", textures->we_path);
+	printf(" NO path:       %s\n", textures->paths->no);
+	printf(" EA path:       %s\n", textures->paths->ea);
+	printf(" SO path:       %s\n", textures->paths->so);
+	printf(" WE path:       %s\n", textures->paths->we);
 }
 
 int	main(int argc, char **argv)

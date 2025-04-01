@@ -6,7 +6,7 @@
 /*   By: nightcore <nightcore@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 14:36:59 by nightcore         #+#    #+#             */
-/*   Updated: 2025/03/26 22:58:29 by nightcore        ###   ########.fr       */
+/*   Updated: 2025/04/01 15:25:50 by nightcore        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,13 @@ static bool	has_found_all_identifiers(t_textures *t)
 {
 	if (t->ceil_clr == -1 || t->flr_clr == -1)
 		return (false);
-	if (t->no_path == NULL)
+	if (t->paths->no == NULL)
 		return (false);
-	if (t->ea_path == NULL)
+	if (t->paths->ea == NULL)
 		return (false);
-	if (t->so_path == NULL)
+	if (t->paths->so == NULL)
 		return (false);
-	if (t->we_path == NULL)
+	if (t->paths->we == NULL)
 		return (false);
 	return (true);
 }
@@ -47,13 +47,8 @@ static bool	try_parse_info(t_id_info *inf, int fd, char *buf, int *bytes_read)
 	}
 	else
 	{
-		if (!try_load_wall_texture(inf, data, \
-				get_wall_texture_path(inf, fd, buf, bytes_read)))
-		{
+		if (!try_parse_texture(inf, fd, buf, bytes_read))
 			return (false);
-		}
-		//if (!try_parse_texture(inf, fd, buf, bytes_read))
-			//return (false);
 	}
 	return (true);
 }
@@ -87,7 +82,10 @@ bool	try_get_textures(t_cub_data *data, int fd, int *bytes_read)
 {
 	data->textures = (t_textures *) ft_calloc(1, sizeof(t_textures));
 	if (data->textures == NULL)
-		return (false);
+		return (print_error(MALLOC_ERR), false);
+	data->textures->paths = (t_paths *) ft_calloc(1, sizeof(t_paths));
+	if (data->textures->paths == NULL)
+		return (print_error(MALLOC_ERR), false);
 	data->textures->ceil_clr = -1;
 	data->textures->flr_clr = -1;
 	if (!try_read(data, fd, bytes_read))

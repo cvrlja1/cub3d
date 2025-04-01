@@ -6,7 +6,7 @@
 /*   By: nightcore <nightcore@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 15:02:37 by nightcore         #+#    #+#             */
-/*   Updated: 2025/02/03 19:12:10 by nightcore        ###   ########.fr       */
+/*   Updated: 2025/04/01 15:18:47 by nightcore        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,13 @@ bool	is_valid_id_info(t_id_info *info)
 static bool	try_get_id_pointer_ref(t_textures *t, t_id_info *info)
 {
 	if (info->id == NO)
-		info->ptr_ref = (void *) &t->no_path;
+		info->ptr_ref = (void *) &t->paths->no;
 	else if (info->id == EA)
-		info->ptr_ref = (void *) &t->ea_path;
+		info->ptr_ref = (void *) &t->paths->ea;
 	else if (info->id == SO)
-		info->ptr_ref = (void *) &t->so_path;
+		info->ptr_ref = (void *) &t->paths->so;
 	else if (info->id == WE)
-		info->ptr_ref = (void *) &t->we_path;
+		info->ptr_ref = (void *) &t->paths->we;
 	else
 	{
 		if (info->id == C)
