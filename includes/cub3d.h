@@ -6,7 +6,7 @@
 /*   By: nicvrlja <nicvrlja@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 21:04:53 by nicvrlja          #+#    #+#             */
-/*   Updated: 2025/03/26 16:34:23 by nicvrlja         ###   ########.fr       */
+/*   Updated: 2025/04/01 12:26:14 by nicvrlja         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,13 +96,14 @@ typedef struct s_textures
 
 typedef struct s_image
 {
-	void	*mlx_img;
-	char	*mlx_addr;
-	int		bpp;
-	int		size_line;
-	int		endian;
-	int		width;
-	int		height;
+	void			*mlx_img;
+	char			*mlx_addr;
+	int				bpp;
+	int				size_line;
+	int				endian;
+	int				width;
+	int				height;
+	struct s_image	*next;
 }	t_image;
 
 typedef struct s_cub_data
@@ -132,7 +133,7 @@ void	move_player(t_cub_data *data);
 
 bool	try_mlx_setup(t_cub_data *data);
 t_image	*create_image(void *mlx_ptr);
-t_image	*load_texture(char *filename, t_cub_data *data);
+bool	load_textures(t_cub_data *data);
 int		get_pixel_color(t_image *texture, int x, int y);
 void	put_pixel_on_img(t_image *img, int x, int y, int color);
 int		on_key_pressed(int keycode, void *data);

@@ -6,7 +6,7 @@
 /*   By: nicvrlja <nicvrlja@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 23:09:55 by nightcore         #+#    #+#             */
-/*   Updated: 2025/03/26 16:44:38 by nicvrlja         ###   ########.fr       */
+/*   Updated: 2025/04/01 11:48:12 by nicvrlja         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,12 +50,12 @@ void	update_rotation(t_cub_data *data)
 
 void	handle_press(int keycode, t_cub_data *data)
 {
-	if (keycode == XK_Escape)
-		close_cub(data, 0);
 	if (keycode == XK_Left)
 		data->player->rotate_left = true;
 	else if (keycode == XK_Right)
 		data->player->rotate_right = true;
+	if (keycode == XK_Escape)
+		close_cub(data, 0);
 	if (is_move_input(keycode))
 		change_mov_dir(data->player->mov, keycode, 1);
 	if (keycode == XK_Shift_L)
