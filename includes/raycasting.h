@@ -6,7 +6,7 @@
 /*   By: nicvrlja <nicvrlja@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 20:25:04 by nightcore         #+#    #+#             */
-/*   Updated: 2025/03/25 14:37:24 by nicvrlja         ###   ########.fr       */
+/*   Updated: 2025/04/08 14:30:56 by nicvrlja         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,9 +45,24 @@ typedef struct s_ray
 	bool		hit;
 }	t_ray;
 
+typedef struct s_line
+{
+	int		line_height;
+	int		start;
+	int		end;
+	int		y;
+	int		tex_x;
+	int		tex_y;
+	int		color;
+	float	wall_x;
+	double	step;
+	double	tex_pos;
+	float	wall_dist;
+}	t_line;
+
 /* --------> Functions <-------- */
 
-void	draw_vertical_line(t_ray *ray, t_image *img, int x_pos, t_image *wall);
+void	draw_vert_line(t_ray *ray, t_image *img, int x_pos, t_image *wall);
 void	fill_image_background(t_cub_data *data);
 void	dda(t_ray *ray, t_map *map);
 

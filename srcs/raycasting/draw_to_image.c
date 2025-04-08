@@ -6,7 +6,7 @@
 /*   By: nicvrlja <nicvrlja@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 04:47:27 by nightcore         #+#    #+#             */
-/*   Updated: 2025/03/26 16:25:11 by nicvrlja         ###   ########.fr       */
+/*   Updated: 2025/04/08 12:20:15 by nicvrlja         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,69 +25,60 @@ static int	get_line_height(t_ray *ray)
 	height = (int) WINDOW_HEIGHT / distance;
 	return (height);
 }
-int get_pixel_from_texture(t_image *texture, int x, int y)
+
+static int	get_pixel_from_texture(t_image *texture, int x, int y)
 {
 	char	*pixel;
 	int		color;
 
-	pixel = texture->mlx_addr + (y * texture->size_line + x * (texture->bpp / 8));
+	pixel = texture->mlx_addr
+		+ (y * texture->size_line + x * (texture->bpp / 8));
 	color = *(int *)pixel;
 	return (color);
 }
 
-void draw_vertical_line(t_ray *ray, t_image *img, int x_pos, t_image *wall)
+static void	setup_draw(t_ray *ray, t_line *line, t_image *texture)
 {
-	int		line_height;
-	int		start;
-	int		end;
-	int		y;
-	int		tex_x;
-	int		tex_y;
-	int		color;
-	double	step;
-	double	tex_pos;
-	float	wall_x;
-	float	perpWallDist;
-
 	if (ray->side == EA_WE)
-		perpWallDist = ray->length->x - ray->step_size->x;
+		line->wall_dist = ray->length->x - ray->step_size->x;
 	else
-		perpWallDist = ray->length->y - ray->step_size->y;
+		line->wall_dist = ray->length->y - ray->step_size->y;
 	if (ray->side == NO_SO)
-		wall_x = ray->start->x + perpWallDist * ray->dir->x;
+		line->wall_x = ray->start->x + line->wall_dist * ray->dir->x;
 	else
-		wall_x = ray->start->y + perpWallDist * ray->dir->y;
-	wall_x -= floor(wall_x);
-
-	tex_x = (int)(wall_x * (double)wall->width);
-	if ((ray->side == NO_SO && ray->dir->y > 0) || 
-	    (ray->side == EA_WE && ray->dir->x < 0))
-		tex_x = wall->width - tex_x - 1;
-
-	line_height = get_line_height(ray);
-	start = -line_height / 2 + WINDOW_HEIGHT / 2;
-	if (start < 0)
-		start = 0;
-	end = line_height / 2 + WINDOW_HEIGHT / 2;
-	if (end >= WINDOW_HEIGHT)
-		end = WINDOW_HEIGHT - 1;
-
-	step = 1.0 * wall->height / line_height;
-	tex_pos = (start - WINDOW_HEIGHT / 2 + line_height / 2) * step;
-
-	y = start;
-	while (y <= end)
-	{
-		tex_y = (int)tex_pos & (wall->height - 1);
-		tex_pos += step;
-
-		color = get_pixel_from_texture(wall, tex_x, tex_y);
-
-		put_pixel_on_img(img, x_pos, y, color);
-		y++;
-	}
+		line->wall_x = ray->start->y + line->wall_dist * ray->dir->y;
+	line->wall_x -= floor(line->wall_x);
+	line->tex_x = (int)(line->wall_x * (double)texture->width);
+	if ((ray->side == NO_SO && ray->dir->y > 0)
+		|| (ray->side == EA_WE && ray->dir->x < 0))
+		line->tex_x = texture->width - line->tex_x - 1;
+	line->line_height = get_line_height(ray);
+	line->start = -line->line_height / 2 + WINDOW_HEIGHT / 2;
+	if (line->start < 0)
+		line->start = 0;
+	line->end = line->line_height / 2 + WINDOW_HEIGHT / 2;
+	if (line->end >= WINDOW_HEIGHT)
+		line->end = WINDOW_HEIGHT - 1;
+	line->step = 1.0 * texture->height / line->line_height;
+	line->tex_pos = (line->start - WINDOW_HEIGHT / 2 + line->line_height / 2)
+		* line->step;
+	line->y = line->start;
 }
 
+void	draw_vert_line(t_ray *ray, t_image *img, int x_pos, t_image *texture)
+{
+	t_line	line;
+
+	setup_draw(ray, &line, texture);
+	while (line.y <= line.end)
+	{
+		line.tex_y = (int)line.tex_pos & (texture->height - 1);
+		line.tex_pos += line.step;
+		line.color = get_pixel_from_texture(texture, line.tex_x, line.tex_y);
+		put_pixel_on_img(img, x_pos, line.y, line.color);
+		line.y++;
+	}
+}
 
 void	fill_image_background(t_cub_data *data)
 {

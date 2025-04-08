@@ -6,7 +6,7 @@
 /*   By: nicvrlja <nicvrlja@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 21:04:53 by nicvrlja          #+#    #+#             */
-/*   Updated: 2025/04/01 16:15:04 by nicvrlja         ###   ########.fr       */
+/*   Updated: 2025/04/08 12:09:44 by nicvrlja         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -153,6 +153,7 @@ int		update(void *arg);
 // ############### //
 
 void	print_error(char *msg);
+void	img_error(char *path);
 bool	is_whitespace(char c);
 void	rotate_vector2(t_vector2 *vect, double rad);
 void	normalize_vector2(t_vector2 *vect);

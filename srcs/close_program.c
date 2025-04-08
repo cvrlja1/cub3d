@@ -6,25 +6,11 @@
 /*   By: nicvrlja <nicvrlja@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 00:00:10 by nightcore         #+#    #+#             */
-/*   Updated: 2025/04/01 16:21:05 by nicvrlja         ###   ########.fr       */
+/*   Updated: 2025/04/08 14:32:36 by nicvrlja         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-void	free_map_arr(char **map)
-{
-	int	i;
-
-	i = 0;
-	while (map[i] != NULL)
-	{
-		free(map[i]);
-		map[i++] = NULL;
-	}
-	free(map);
-	map = NULL;
-}
 
 static void	free_map(t_map *map)
 {
@@ -39,7 +25,8 @@ static void	try_destory_mlx_img(void *mlx_ptr, t_image *img)
 {
 	if (img == NULL)
 		return ;
-	mlx_destroy_image(mlx_ptr, img->mlx_img);
+	if (img->mlx_img)
+		mlx_destroy_image(mlx_ptr, img->mlx_img);
 	free(img);
 }
 
@@ -60,7 +47,6 @@ static void	free_textures(t_textures *textures, void *mlx_ptr)
 		free(textures->paths);
 	}
 	(void) mlx_ptr;
-	// the textures have to be properly detroyes/freed here
 	if (textures->no != NULL)
 		try_destory_mlx_img(mlx_ptr, textures->no);
 	if (textures->ea != NULL)

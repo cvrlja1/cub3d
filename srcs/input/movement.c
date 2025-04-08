@@ -6,7 +6,7 @@
 /*   By: nicvrlja <nicvrlja@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 18:49:13 by nightcore         #+#    #+#             */
-/*   Updated: 2025/03/26 16:37:49 by nicvrlja         ###   ########.fr       */
+/*   Updated: 2025/04/08 12:54:17 by nicvrlja         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,4 +75,3 @@ void	move_player(t_cub_data *data)
 	data->player->x += vect.x;
 	data->player->y += vect.y;
 }
-

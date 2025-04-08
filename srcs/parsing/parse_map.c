@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tluegham <tluegham@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nicvrlja <nicvrlja@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/02 22:15:15 by nightcore         #+#    #+#             */
-/*   Updated: 2025/02/18 18:31:34 by tluegham         ###   ########.fr       */
+/*   Updated: 2025/04/08 12:57:13 by nicvrlja         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ char	**get_map_arr(t_cub_data *data, char *file_path, int fd, int bytes_read)
 	close(fd);
 	data->map->x_len = mi.x;
 	data->map->y_len = mi.y;
-	if (!check_map(mi.map, mi.y, mi.x))
+	if (!check_map(mi.map, data))
 		return (free_map_arr(mi.map), print_error(FLOOD_FAIL), NULL);
 	return (mi.map);
 }

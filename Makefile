@@ -46,7 +46,8 @@ CFILES_INPUT		= handle_player_input.c \
 					  utils.c
 
 CFILES_UTILS		= is_whitespace.c \
-					  vector2_math.c
+					  vector2_math.c \
+					  free_map_arr.c
 
 OBJ_FILES 			:= $(CFILES_ROOT:.c=.o) \
 					   $(CFILES_ERROR:.c=.o) \

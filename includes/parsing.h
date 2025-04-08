@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nightcore <nightcore@student.42.fr>        +#+  +:+       +#+        */
+/*   By: nicvrlja <nicvrlja@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/02 22:24:57 by nightcore         #+#    #+#             */
-/*   Updated: 2025/04/01 15:12:05 by nightcore        ###   ########.fr       */
+/*   Updated: 2025/04/08 14:30:36 by nicvrlja         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,6 @@ bool		try_fill_map_arr(t_cub_data *data, char **map, int fd);
 bool		try_parse_color(t_id_info *inf, int fd, char *buf, int *byts_read);
 bool		try_parse_texture(t_id_info *inf, int fd, char *buf, \
 								int *byt_read);
-bool		check_map(char **arr, int wid, int hei);
+bool		check_map(char **arr, t_cub_data *data);
 
 #endif

@@ -6,11 +6,24 @@
 /*   By: nicvrlja <nicvrlja@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 21:47:29 by nightcore         #+#    #+#             */
-/*   Updated: 2025/04/01 16:37:35 by nicvrlja         ###   ########.fr       */
+/*   Updated: 2025/04/08 14:31:05 by nicvrlja         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "raycasting.h"
+
+static t_image	*find_side(t_cub_data *data, t_ray *ray)
+{
+	if (ray->side == NO_SO && ray->dir->y > 0)
+		return (data->textures->no);
+	else if (ray->side == NO_SO && ray->dir->y < 0)
+		return (data->textures->so);
+	else if (ray->side == EA_WE && ray->dir->x > 0)
+		return (data->textures->ea);
+	else if (ray->side == EA_WE && ray->dir->x < 0)
+		return (data->textures->we);
+	return (NULL);
+}
 
 static void	setup_ray(t_ray *ray, t_cub_data *data, int x)
 {
@@ -50,15 +63,8 @@ void	raycast_image(t_cub_data *data)
 		dda(&ray, data->map);
 		if (!ray.hit)
 			continue ;
-		if (ray.side == NO_SO && ray.dir->y > 0)
-			texture = data->textures->no;
-		else if (ray.side == NO_SO && ray.dir->y < 0)
-			texture = data->textures->so;
-		else if (ray.side == EA_WE && ray.dir->x > 0)
-			texture = data->textures->ea;
-		else if (ray.side == EA_WE && ray.dir->x < 0)
-			texture = data->textures->we;
-		draw_vertical_line(&ray, data->img, x, texture);
+		texture = find_side(data, &ray);
+		draw_vert_line(&ray, data->img, x, texture);
 		x++;
 	}
 }

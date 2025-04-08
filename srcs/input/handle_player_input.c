@@ -6,13 +6,13 @@
 /*   By: nicvrlja <nicvrlja@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 23:09:55 by nightcore         #+#    #+#             */
-/*   Updated: 2025/04/01 11:48:12 by nicvrlja         ###   ########.fr       */
+/*   Updated: 2025/04/08 12:54:11 by nicvrlja         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "input.h"
 
-static void		rotate_player(int keycode, t_player *player)
+static void	rotate_player(int keycode, t_player *player)
 {
 	const int	rot_amount = 2;
 	double		rot_degrees;
@@ -40,6 +40,7 @@ void	handle_release(int keycode, t_cub_data *data)
 	if (keycode == XK_Shift_L)
 		data->player->mov->is_spriting = false;
 }
+
 void	update_rotation(t_cub_data *data)
 {
 	if (data->player->rotate_left)
