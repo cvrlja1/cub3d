@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nightcore <nightcore@student.42.fr>        +#+  +:+       +#+        */
+/*   By: tluegham <tluegham@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 21:03:53 by nicvrlja          #+#    #+#             */
-/*   Updated: 2025/04/01 15:19:48 by nightcore        ###   ########.fr       */
+/*   Updated: 2025/06/18 15:51:11 by tluegham         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,8 @@ int	main(int argc, char **argv)
 	debug_textures(data.textures);
 	if (!try_mlx_setup(&data))
 		close_cub(&data, 1);
+	close_cub(&data, 1);
+	return (0);
 	mlx_loop(data.mlx);
 	return (0);
 }
