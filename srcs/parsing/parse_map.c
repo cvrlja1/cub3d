@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nicvrlja <nicvrlja@student.42vienna.com    +#+  +:+       +#+        */
+/*   By: tluegham <tluegham@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/02 22:15:15 by nightcore         #+#    #+#             */
-/*   Updated: 2025/04/08 12:57:13 by nicvrlja         ###   ########.fr       */
+/*   Updated: 2025/06/18 15:58:30 by tluegham         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,8 @@ char	**get_map_arr(t_cub_data *data, char *file_path, int fd, int bytes_read)
 	t_map_info	mi;
 
 	mi = get_map_infos(fd, &bytes_read);
-	close(fd);
+	if (close(fd) < 0)
+		return (NULL);
 	if (!has_valid_map_info(mi))
 		return (NULL);
 	mi.map = create_map_arr(mi);

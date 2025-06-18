@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_color.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nightcore <nightcore@student.42.fr>        +#+  +:+       +#+        */
+/*   By: tluegham <tluegham@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 15:34:54 by nightcore         #+#    #+#             */
-/*   Updated: 2025/02/20 14:00:08 by nightcore        ###   ########.fr       */
+/*   Updated: 2025/06/18 16:11:27 by tluegham         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,13 +38,28 @@ static int	get_rgb_nbr(int fd, char *buf, int *bytes_read)
 
 static bool	try_between_read(int fd, char *buf, int *bytes_read)
 {
+	int read_amount;
+
 	while (is_whitespace(*buf))
-		*bytes_read += read(fd, buf, 1);
+	{
+		read_amount = read(fd, buf, 1);
+		if (read_amount < 0)
+			return (false);
+		*bytes_read += read_amount;
+	}
 	if (*buf != ',')
 		return (print_error(CLR_COMMA_ERR), false);
-	*bytes_read += read(fd, buf, 1);
+	read_amount = read(fd, buf, 1);
+	if (read_amount < 0)
+		return (false);
+	*bytes_read += read_amount;
 	while (is_whitespace(*buf))
-		*bytes_read += read(fd, buf, 1);
+	{
+		read_amount = read(fd, buf, 1);
+		if (read_amount < 0)
+			return (false);
+		*bytes_read += read_amount;
+	}
 	return (true);
 }
 

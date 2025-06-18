@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   close_program.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nicvrlja <nicvrlja@student.42vienna.com    +#+  +:+       +#+        */
+/*   By: tluegham <tluegham@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 00:00:10 by nightcore         #+#    #+#             */
-/*   Updated: 2025/04/08 14:32:36 by nicvrlja         ###   ########.fr       */
+/*   Updated: 2025/06/18 16:08:40 by tluegham         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ void	free_cub(t_cub_data *data)
 		mlx_destroy_window(data->mlx, data->win);
 	if (data->mlx != NULL)
 	{
+		mlx_do_key_autorepeaton(data->mlx);
 		mlx_destroy_display(data->mlx);
 		free(data->mlx);
 	}
@@ -83,7 +84,6 @@ void	free_cub(t_cub_data *data)
 
 void	close_cub(t_cub_data *data, int exit_code)
 {
-	mlx_do_key_autorepeaton(data->mlx);
 	free_cub(data);
 	exit(exit_code);
 }
