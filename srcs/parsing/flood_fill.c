@@ -3,48 +3,28 @@
 /*                                                        :::      ::::::::   */
 /*   flood_fill.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nicvrlja <nicvrlja@student.42vienna.com    +#+  +:+       +#+        */
+/*   By: tluegham <tluegham@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 13:48:37 by nicvrlja          #+#    #+#             */
-/*   Updated: 2025/04/08 14:30:13 by nicvrlja         ###   ########.fr       */
+/*   Updated: 2025/06/27 18:25:48 by tluegham         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
 
-static bool	is_on_boundary(char **arr, t_cub_data *data, int x, int y)
-{
-	if (arr[y][x] == WALK_CHAR && (x == 0 || x == data->map->y_len - 1
-		|| y == 0 || y == data->map->x_len - 1))
-		return (true);
-	return (false);
-}
-
-static bool	is_valid(char **arr, t_cub_data *data, int x, int y)
+static bool	flood(char **arr, t_cub_data *data, int x, int y)
 {
 	if (x < 0 || x >= data->map->y_len || y < 0 || y >= data->map->x_len)
 		return (false);
-	if (arr[y][x] != WALK_CHAR)
+	if (arr[y][x] == VALIDATED_WALK_CHAR || arr[y][x] == BORDER_CHAR)
+		return (true);
+	if (arr[y][x] == WHITE_SPACE_CHAR)
 		return (false);
-	return (true);
-}
-
-static bool	flood(char **arr, t_cub_data *data, int x, int y)
-{
-	static bool	check = true;
-
-	if (is_on_boundary(arr, data, x, y) || arr[y][x] == '\0')
-		check = false;
-	if (!is_valid(arr, data, x, y))
-		return (false);
-	if (!check)
-		return (false);
-	arr[y][x] = '0';
-	flood(arr, data, x + 1, y);
-	flood(arr, data, x - 1, y);
-	flood(arr, data, x, y + 1);
-	flood(arr, data, x, y - 1);
-	return (true);
+	arr[y][x] = VALIDATED_WALK_CHAR;
+	return (flood(arr, data, x + 1, y) \
+			&& flood(arr, data, x - 1, y) \
+			&& flood(arr, data, x, y + 1) \
+			&& flood(arr, data, x, y - 1));
 }
 
 static bool	loop_map(char **arr, int wid, int hei)

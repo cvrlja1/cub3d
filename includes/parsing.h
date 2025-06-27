@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nicvrlja <nicvrlja@student.42vienna.com    +#+  +:+       +#+        */
+/*   By: tluegham <tluegham@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/02 22:24:57 by nightcore         #+#    #+#             */
-/*   Updated: 2025/04/08 14:30:36 by nicvrlja         ###   ########.fr       */
+/*   Updated: 2025/06/27 18:06:05 by tluegham         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,9 @@ Use 'N', 'E', 'S' or 'W'!"
 # define F_IDENTIFIER "F"
 # define C_IDENTIFIER "C"
 # define WALK_CHAR 'X'
+# define VALIDATED_WALK_CHAR '0'
+# define BORDER_CHAR '1'
+# define WHITE_SPACE_CHAR ' '
 
 /* --------> Structures <-------- */
 

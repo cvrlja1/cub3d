@@ -1,7 +1,7 @@
-NO ./img/north_wall_1200.xpm
-SO ./img/south_wall_1200.xpm
-WE ./img/west_wall_1200.xpm
-EA ./img/east_wall_1200.xpm
+NO textures/wall_no.xpm
+SO textures/wall_so.xpm
+WE textures/wall_we.xpm
+EA textures/wall_ea.xpm
 
 F 220,100,0
 C 225,30,0

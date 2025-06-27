@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fill_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nightcore <nightcore@student.42.fr>        +#+  +:+       +#+        */
+/*   By: tluegham <tluegham@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 01:53:41 by nightcore         #+#    #+#             */
-/*   Updated: 2025/02/19 21:08:57 by nightcore        ###   ########.fr       */
+/*   Updated: 2025/06/27 17:55:04 by tluegham         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,19 +32,11 @@ static void	handle_special_map_char(t_cub_data *data, char *c, int x, int y)
 
 static void	place_char_on_map(char **map, int x, int y, char c)
 {
-	static char	last_char = '\0';
-
 	if (c == '0')
 		c = WALK_CHAR;
 	else if (is_whitespace(c))
-	{
-		if (last_char == '1' || last_char == '\0')
-			c = '\0';
-		else
-			c = WALK_CHAR;
-	}
+		c = WHITE_SPACE_CHAR;
 	map[x][y] = c;
-	last_char = c;
 }
 
 bool	try_fill_map_arr(t_cub_data *data, char **map, int fd)

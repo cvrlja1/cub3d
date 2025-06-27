@@ -62,7 +62,7 @@ OBJS				:= $(addprefix $(OBJS_DIR), $(OBJ_FILES))
 # Compilation variables
 NAME				= cub3D
 CC 					= cc
-CFLAGS 				= -Wall -Werror -Wextra -g
+CFLAGS 				= -Wall -Werror -Wextra
 RM 					= rm -rf
 LINKFLAGS			:= -L$(LIBFT_DIR) -lft -lmlx -lX11 -lXext -lm
 INCLUDES			:= -I$(INCLUDES_DIR) -I$(LIBFT_DIR)
@@ -78,6 +78,9 @@ $(NAME): $(OBJS)
 	@make all -C $(LIBFT_DIR)
 	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(LINKFLAGS)
 
+debug:
+	$(MAKE) CFLAGS="$(CFLAGS) -g"
+
 clean:
 	@make clean -C $(LIBFT_DIR)
 	$(RM) objs
@@ -92,7 +95,9 @@ r:
 	$(RM) objs
 	make $(NAME)
 
-.PHONY: all clean fclean re r
+bonus: all
+
+.PHONY: all clean fclean re r bonus debug
 
 # -------------------------------------------------------------------
 # OBJECT RULES
