@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_file.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nicvrlja <nicvrlja@student.42vienna.com    +#+  +:+       +#+        */
+/*   By: tluegham <tluegham@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/02 21:26:30 by nightcore         #+#    #+#             */
-/*   Updated: 2025/04/01 11:52:31 by nicvrlja         ###   ########.fr       */
+/*   Updated: 2025/06/27 16:39:29 by tluegham         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ static bool	is_valid_input(int argc, char **argv)
 	len = ft_strlen(argv[1]);
 	if (len < 4)
 		return (print_error(MAP_EXT_ERR), false);
-	if (strncmp(&argv[1][len - 4], ".cub", 4) != 0)
+	if (ft_strncmp(&argv[1][len - 4], ".cub", 4) != 0)
 		return (print_error(MAP_EXT_ERR), false);
 	return (true);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nicvrlja <nicvrlja@student.42vienna.com    +#+  +:+       +#+        */
+/*   By: tluegham <tluegham@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 21:47:29 by nightcore         #+#    #+#             */
-/*   Updated: 2025/04/08 14:31:05 by nicvrlja         ###   ########.fr       */
+/*   Updated: 2025/06/27 16:40:27 by tluegham         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static void	setup_ray(t_ray *ray, t_cub_data *data, int x)
 	tmp = ray->dir->x / ray->dir->y;
 	ray->step_size->y = sqrt(1 + tmp * tmp);
 	ray->hit = false;
-	memset(ray->length, 0, sizeof(t_vector2));
+	ft_memset(ray->length, 0, sizeof(t_vector2));
 }
 
 void	raycast_image(t_cub_data *data)

@@ -6,18 +6,20 @@
 /*   By: tluegham <tluegham@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 21:03:53 by nicvrlja          #+#    #+#             */
-/*   Updated: 2025/06/18 15:51:11 by tluegham         ###   ########.fr       */
+/*   Updated: 2025/06/27 16:42:37 by tluegham         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
+/*
 static void	debug_print_map(t_map *map)
 {
 	char	c;
 	int		i;
 	int		j;
 
+	return;
 	i = 0;
 	printf("Showing map:\n\n");
 	while (map->arr[i] != NULL)
@@ -38,6 +40,7 @@ static void	debug_print_map(t_map *map)
 
 static void	debug_textures(t_textures *textures)
 {
+	return;
 	if (textures == NULL)
 		return ;
 	printf(" Ceiling color: %X\n", textures->ceil_clr);
@@ -47,6 +50,7 @@ static void	debug_textures(t_textures *textures)
 	printf(" SO path:       %s\n", textures->paths->so);
 	printf(" WE path:       %s\n", textures->paths->we);
 }
+*/
 
 int	main(int argc, char **argv)
 {
@@ -55,12 +59,8 @@ int	main(int argc, char **argv)
 	ft_memset(&data, 0, sizeof(t_cub_data));
 	if (!try_initialization(argc, argv, &data))
 		return (1);
-	debug_print_map(data.map);
-	debug_textures(data.textures);
 	if (!try_mlx_setup(&data))
 		close_cub(&data, 1);
-	close_cub(&data, 1);
-	return (0);
 	mlx_loop(data.mlx);
 	return (0);
 }

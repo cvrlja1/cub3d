@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   close_program.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nicvrlja <nicvrlja@student.42vienna.com    +#+  +:+       +#+        */
+/*   By: tluegham <tluegham@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 00:00:10 by nightcore         #+#    #+#             */
-/*   Updated: 2025/06/18 16:13:38 by nicvrlja         ###   ########.fr       */
+/*   Updated: 2025/06/18 16:19:24 by tluegham         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@ static void	free_textures(t_textures *textures, void *mlx_ptr)
 			free(textures->paths->we);
 		free(textures->paths);
 	}
-	(void) mlx_ptr;
 	if (textures->no != NULL)
 		try_destory_mlx_img(mlx_ptr, textures->no);
 	if (textures->ea != NULL)

@@ -6,7 +6,7 @@
 /*   By: tluegham <tluegham@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 15:34:54 by nightcore         #+#    #+#             */
-/*   Updated: 2025/06/18 16:11:27 by tluegham         ###   ########.fr       */
+/*   Updated: 2025/06/27 16:43:03 by tluegham         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static int	get_rgb_nbr(int fd, char *buf, int *bytes_read)
 
 static bool	try_between_read(int fd, char *buf, int *bytes_read)
 {
-	int read_amount;
+	int	read_amount;
 
 	while (is_whitespace(*buf))
 	{
