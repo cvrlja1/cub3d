@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_identifiers.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nightcore <nightcore@student.42.fr>        +#+  +:+       +#+        */
+/*   By: nicvrlja <nicvrlja@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 15:02:37 by nightcore         #+#    #+#             */
-/*   Updated: 2025/04/01 15:18:47 by nightcore        ###   ########.fr       */
+/*   Updated: 2025/06/27 16:38:56 by nicvrlja         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,17 +53,17 @@ static t_id_info	get_identifier_infos(t_textures *t, char *key)
 {
 	t_id_info	id_info;
 
-	if (strcmp(key, NO_IDENTIFIER) == 0)
+	if (ft_strcmp(key, NO_IDENTIFIER) == 0)
 		id_info.id = NO;
-	else if (strcmp(key, EA_IDENTIFIER) == 0)
+	else if (ft_strcmp(key, EA_IDENTIFIER) == 0)
 		id_info.id = EA;
-	else if (strcmp(key, SO_IDENTIFIER) == 0)
+	else if (ft_strcmp(key, SO_IDENTIFIER) == 0)
 		id_info.id = SO;
-	else if (strcmp(key, WE_IDENTIFIER) == 0)
+	else if (ft_strcmp(key, WE_IDENTIFIER) == 0)
 		id_info.id = WE;
-	else if (strcmp(key, C_IDENTIFIER) == 0)
+	else if (ft_strcmp(key, C_IDENTIFIER) == 0)
 		id_info.id = C;
-	else if (strcmp(key, F_IDENTIFIER) == 0)
+	else if (ft_strcmp(key, F_IDENTIFIER) == 0)
 		id_info.id = F;
 	else
 		return (print_error(INVALID_ID_ERR), \
