@@ -79,7 +79,7 @@ $(NAME): $(OBJS)
 	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(LINKFLAGS)
 
 debug:
-	$(MAKE) CFLAGS="$(CFLAGS) -g"
+	$(MAKE) CFLAGS="-g $(CFLAGS)"
 
 clean:
 	@make clean -C $(LIBFT_DIR)
