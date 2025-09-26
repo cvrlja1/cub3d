@@ -1,8 +1,6 @@
 # cub3D
 **3D Raycasting Game** – Part of the **42 Vienna curriculum**
 
-![cub3D Screenshot](path/to/screenshot.png) <!-- Replace with your screenshot or GIF -->
-
 ![C](https://img.shields.io/badge/Language-C-00599C?style=for-the-badge&logo=c)
 ![MiniLibX](https://img.shields.io/badge/Graphics-MiniLibX-FF69B4?style=for-the-badge)
 ![License](https://img.shields.io/badge/License-Educational-lightgrey?style=for-the-badge)
@@ -37,4 +35,4 @@ Players can navigate a map with smooth movement and collision detection while wa
 git clone https://github.com/cvrlja1/cub3d.git
 cd cub3d
 make
-./cub3D maps/map1.cub
+./cub3D maps/subject_map.cub
